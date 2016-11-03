@@ -23,7 +23,6 @@ alias la='ls -la'
 alias lh='ls -lh'
 alias vim='nvim'
 
-alias zeppelin='$SPARK_HOME/zeppelin/bin/zeppelin-daemon.sh'
 alias py27='source activate py27'
 alias py35='source deactivate py27'
 
