@@ -9,9 +9,10 @@ setopt extended_glob
 setopt prompt_subst
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+setopt complete_aliases
 
 #PATH
-PATH="/Users/mosko/anaconda/bin:$PATH"
+PATH="$HOME/anaconda/bin:$PATH"
 PATH="/Applications/Julia-0.5.app/Contents/Resources/julia/bin:$PATH"
 export PATH=$PATH:$SPARK_HOME/bin
 export SPARK_HOME=/Users/mosko/Documents/spark
@@ -29,5 +30,6 @@ alias py35='source deactivate py27'
 alias chrome='open /Applications/Google\ Chrome.app'
 alias mysql='/Applications/XAMPP/bin/mysql'
 
-source $HOME/.ssh/connections
 ssh-add -A >& /dev/null
+
+[ -f ~/.zshrc_ ] && source ~/.zshrc_
