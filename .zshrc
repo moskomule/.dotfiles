@@ -11,11 +11,18 @@ zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 setopt complete_aliases
 
+#history
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+
+
+
 #PATH
 PATH="$HOME/anaconda/bin:$PATH"
 PATH="/Applications/Julia-0.5.app/Contents/Resources/julia/bin:$PATH"
+export SPARK_HOME=$HOME/local/spark/
 export PATH=$PATH:$SPARK_HOME/bin
-export SPARK_HOME=/Users/mosko/Documents/spark
 
 #Aliases
 alias ls='ls -GF'
@@ -25,9 +32,8 @@ alias vim='nvim'
 
 alias py27='source activate py27'
 alias py35='source deactivate py27'
-
-alias chrome='open /Applications/Google\ Chrome.app'
-alias mysql='/Applications/XAMPP/bin/mysql'
+alias jup='jupyter notebook'
+alias tma='tmux a'
 
 ssh-add -A >& /dev/null
 
