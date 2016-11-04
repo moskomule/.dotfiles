@@ -16,8 +16,6 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 
-
-
 #PATH
 PATH="$HOME/anaconda/bin:$PATH"
 PATH="/Applications/Julia-0.5.app/Contents/Resources/julia/bin:$PATH"
