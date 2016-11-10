@@ -21,6 +21,7 @@ PATH="$HOME/anaconda/bin:$PATH"
 PATH="/Applications/Julia-0.5.app/Contents/Resources/julia/bin:$PATH"
 export SPARK_HOME=$HOME/local/spark/
 export PATH=$PATH:$SPARK_HOME/bin
+export XDG_CONFIG_HOME=$HOME/.config
 
 #Aliases
 alias ls='ls -GF'
