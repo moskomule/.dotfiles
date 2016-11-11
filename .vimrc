@@ -9,6 +9,14 @@ set shiftwidth=4
 set expandtab
 set relativenumber
 set encoding=utf-8
+set hlsearch
+nnoremap <ESC><ESC> :nohlsearch<CR>
+set cursorline
+set incsearch
+set ignorecase 	
+set smartcase
+set wrapscan
+
 
 " dein settings {{{
 if &compatible
@@ -61,3 +69,9 @@ map <C-h> <C-w><C-h>
 map <C-j> <C-w><C-j>
 map <C-k> <C-w><C-k>
 map <C-l> <C-w><C-l>
+" launch ndtree automatically
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"ignore
+let NERDTreeIgnore = ['.[oa]$', '.(so)$', '.(tgz|gz|zip)$' ]
+
