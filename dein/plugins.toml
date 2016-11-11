@@ -9,19 +9,17 @@ repo = 'hynek/vim-python-pep8-indent'
 on_ft = 'python'
 
 [[plugins]]
-repo = 'Shougo/neocomplete.vim'
-
-[[plugins]]
 repo = 'tomasr/molokai'
 
 [[plugins]]
 repo = 'derekwyatt/vim-scala'
+on_ft = 'scala'
 
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
 
 [[plugins]]
-repo = 'lervag/vimtex'
+repo = 'Townk/vim-autoclose'
 
 [[plugins]]
 repo = 'scrooloose/nerdtree'
