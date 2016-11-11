@@ -23,3 +23,6 @@ repo = 'Townk/vim-autoclose'
 
 [[plugins]]
 repo = 'scrooloose/nerdtree'
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
