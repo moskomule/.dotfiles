@@ -2,6 +2,9 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
+repo = 'Shougo/denite.nvim'
+
+[[plugins]]
 repo = 'hynek/vim-python-pep8-indent'
 on_ft = 'python'
 
@@ -10,9 +13,6 @@ repo = 'Shougo/neocomplete.vim'
 
 [[plugins]]
 repo = 'tomasr/molokai'
-
-[[plugins]]
-repo = 'Shougo/unite.vim'
 
 [[plugins]]
 repo = 'derekwyatt/vim-scala'
