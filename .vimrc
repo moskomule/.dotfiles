@@ -81,7 +81,7 @@ map <C-l> <C-w><C-l>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "ignore
-let NERDTreeIgnore = ['.[oa]$', '.(so)$', '.(tgz|gz|zip)$' ]
+let NERDTreeIgnore = ['.(tgz|gz|zip)$' ]
 
 "EasyAlign
 " Start interactive EasyAlign in visual mode (e.g. vipga)
