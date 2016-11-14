@@ -65,7 +65,7 @@ let g:deoplete#enable_at_startup = 1
 "denite settings
 nmap <silent> <C-u><C-f> :<C-u>Denite filetype<CR>
 nmap <silent> <C-u><C-p> :<C-u>Denite file_rec<CR>
-nmap <silent> <C-u><C-j> :<C-u>Denite line<CR>
+nmap <silent> <C-u><C-l> :<C-u>Denite line<CR>
 nmap <silent> <C-u><C-g> :<C-u>Denite grep<CR>
 nmap <silent> <C-u><C-u> :<C-u>Denite file_mru<CR>
 nmap <silent> <C-u><C-y> :<C-u>Denite neoyank<CR>

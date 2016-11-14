@@ -26,3 +26,7 @@ repo = 'scrooloose/nerdtree'
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
+
+[[plugins]]
+repo = 'Shougo/neoyank.vim'
+
