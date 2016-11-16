@@ -16,6 +16,7 @@ set incsearch
 set ignorecase 	
 set smartcase
 set wrapscan
+set clipboard+=unnamedplus
 
 
 " dein settings {{{
