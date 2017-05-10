@@ -14,7 +14,7 @@ set incsearch
 set ignorecase 	
 set smartcase
 set wrapscan
-"set clipboard+=unnamedplus
+set mouse=a
 set clipboard&
 set clipboard^=unnamedplus
 
@@ -22,12 +22,12 @@ nnoremap s <Nop>
 nnoremap sh :split<CR> <C-w><C-j>
 nnoremap sv :vsplit<CR>
 
-nnoremap  <silent> <C-t> :split<CR> <C-w><C-j> :terminal<CR>
 nnoremap <ESC><ESC> :nohlsearch<CR>
 
 "neovim terminal settings
-tnoremap <ESC> <C-\><C-n>
+nnoremap  <silent> <C-t> :split<CR> <C-w><C-j> :terminal<CR>
 tnoremap <silent> <C-t> <C-\><C-n> :q <CR>
+tnoremap <silent> <C-k> <C-\><C-n> <C-w><C-k>
 
 " dein settings {{{
 if &compatible
@@ -103,3 +103,7 @@ let NERDTreeIgnore = ['.(tgz|gz|zip)$' ]
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+"theme settings
+set laststatus=2
+let g:airline_theme="light"

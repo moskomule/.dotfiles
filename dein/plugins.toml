@@ -32,3 +32,12 @@ repo = 'Shougo/neoyank.vim'
 
 [[plugins]]
 repo = 'rust-lang/rust.vim'
+
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
+
+[[plugins]]
+repo = 'zchee/deoplete-jedi'
