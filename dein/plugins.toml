@@ -30,3 +30,5 @@ repo = 'junegunn/vim-easy-align'
 [[plugins]]
 repo = 'Shougo/neoyank.vim'
 
+[[plugins]]
+repo = 'rust-lang/rust.vim'

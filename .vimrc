@@ -8,16 +8,18 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set relativenumber
-set encoding=utf-8
 set hlsearch
-nnoremap <ESC><ESC> :nohlsearch<CR>
 set cursorline
 set incsearch
 set ignorecase 	
 set smartcase
 set wrapscan
-set clipboard+=unnamedplus
+"set clipboard+=unnamedplus
+set clipboard&
+set clipboard^=unnamedplus
 
+nnoremap <C-t> :terminal<CR>
+nnoremap <ESC><ESC> :nohlsearch<CR>
 
 " dein settings {{{
 if &compatible
@@ -73,14 +75,21 @@ nmap <silent> <C-u><C-y> :<C-u>Denite neoyank<CR>
 
 "activate NERDTree
 map <C-n> :NERDTreeToggle<CR>
+
 " Easier split navigation
+nnoremap s <Nop>
+nnoremap sh :split
+nnoremap sv :vsplit
+
 map <C-h> <C-w><C-h>
 map <C-j> <C-w><C-j>
 map <C-k> <C-w><C-k>
 map <C-l> <C-w><C-l>
+
 " launch ndtree automatically
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"autocmd VimEnter if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "ignore
 let NERDTreeIgnore = ['.(tgz|gz|zip)$' ]
 
