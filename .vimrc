@@ -18,8 +18,16 @@ set wrapscan
 set clipboard&
 set clipboard^=unnamedplus
 
-nnoremap <C-t> :terminal<CR>
+nnoremap s <Nop>
+nnoremap sh :split<CR> <C-w><C-j>
+nnoremap sv :vsplit<CR>
+
+nnoremap  <silent> <C-t> :split<CR> <C-w><C-j> :terminal<CR>
 nnoremap <ESC><ESC> :nohlsearch<CR>
+
+"neovim terminal settings
+tnoremap <ESC> <C-\><C-n>
+tnoremap <silent> <C-t> <C-\><C-n> :q <CR>
 
 " dein settings {{{
 if &compatible
@@ -77,14 +85,11 @@ nmap <silent> <C-u><C-y> :<C-u>Denite neoyank<CR>
 map <C-n> :NERDTreeToggle<CR>
 
 " Easier split navigation
-nnoremap s <Nop>
-nnoremap sh :split
-nnoremap sv :vsplit
 
-map <C-h> <C-w><C-h>
-map <C-j> <C-w><C-j>
-map <C-k> <C-w><C-k>
-map <C-l> <C-w><C-l>
+nnoremap <C-h> <C-w><C-h>
+nnoremap <C-j> <C-w><C-j>
+nnoremap <C-k> <C-w><C-k>
+nnoremap <C-l> <C-w><C-l>
 
 " launch ndtree automatically
 autocmd StdinReadPre * let s:std_in=1
