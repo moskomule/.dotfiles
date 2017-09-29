@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for file in `ls`; do
+for file in .??*; do
     if [[ "$file" == ".git" ]]; then 
         continue 
     fi
