@@ -41,3 +41,6 @@ repo = 'vim-airline/vim-airline-themes'
 
 [[plugins]]
 repo = 'zchee/deoplete-jedi'
+
+[[plugins]]
+repo = 'leafgarland/typescript-vim'

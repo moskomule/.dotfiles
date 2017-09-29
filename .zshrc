@@ -10,29 +10,32 @@ setopt prompt_subst
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 setopt complete_aliases
+disable r # use ctrl+r instead
 
-#history
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+# history
+export HISTFILE=${HOME}/.histfile
+export HISTSIZE=1000
+export SAVEHIST=1000
+setopt EXTENDED_HISTORY
 
-#PATH
-PATH="$HOME/anaconda/bin:$PATH"
-export SPARK_HOME=$HOME/local/spark/
-export PATH=$PATH:$SPARK_HOME/bin
+# PATH
+export PATH=$PATH:${HOME}/.dotfiles/scripts
 export XDG_CONFIG_HOME=$HOME/.config
 
-#Aliases
+# Aliases
 alias ls='ls -GF'
 alias la='ls -la'
 alias lh='ls -lh'
 alias vim='nvim'
 
-alias py27='source activate py27'
-alias py35='source deactivate py27'
+# functions
+mc(){
+    mkdir $1
+    cd $1
+    echo `pwd`
+}
+
 alias jup='jupyter notebook'
 alias tma='tmux a'
-
-ssh-add -A >& /dev/null
 
 [ -f ~/.zshrc_ ] && source ~/.zshrc_

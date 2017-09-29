@@ -29,6 +29,8 @@ set mouse=a
 set clipboard&
 set clipboard^=unnamedplus
 
+" quit vim
+nnoremap <C-x> :qa<CR>
 nnoremap s <Nop>
 " split horizontally and move below
 nnoremap sh :split<CR> <C-w><C-j>
@@ -36,13 +38,15 @@ nnoremap sh :split<CR> <C-w><C-j>
 nnoremap sv :vsplit<CR>
 
 " escape from searching mode
-nnoremap <ESC><ESC> :nohlsearch<CR>
+nnoremap <silent> <ESC><ESC> :nohlsearch<CR>
 
 " neovim terminal settings
 " launch terminal below 
-nnoremap  <silent> <C-t> :split<CR> <C-w><C-j> :terminal<CR>
+nnoremap  <C-t> :split<CR> <C-w><C-j> :terminal<CR>
+" change to terminal-command mode
+tnoremap <Esc> <C-\><C-n>
 " quit terminal
-tnoremap <silent> <C-x> <C-\><C-n> :q <CR>
+tnoremap <silent> <C-w> <C-\><C-n> :q! <CR>
 " move to window above from terminal
 tnoremap <silent> <C-k> <C-\><C-n> <C-w><C-k>
 
@@ -129,3 +133,5 @@ nmap ga <Plug>(EasyAlign)
 " theme settings
 let g:airline_theme="light"
 
+" jedi-vim
+autocmd FileType python setlocal completeopt-=preview
