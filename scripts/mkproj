@@ -1,0 +1,65 @@
+#!/bin/bash
+# make project directory
+# mkproj [-f CONFIGFILE] PROJECTNAME 
+# CONFIGFILE's format is as follow
+# * files must contains dot .
+# * directories must end with back-slash /
+# * subdirectory/subfile must start with |-- without space(s)
+
+directories="
+.gitignore
+README.md
+data/
+config/
+checkpoints/
+notebooks/
+results/
+requirements.txt
+src/
+|--preprocessing/
+|--features/
+|--models/
+|--visualization/
+|--utils/
+"
+
+# options
+if [[ $1 == "-f" ]]; then
+    DIRECTORIES=$(cat $2)
+    PROJECTNAME=$3
+elif [[ $(echo $1 | grep "^-") ]]; then
+    echo "no such option $1"
+    exit 1
+else
+    DIRECTORIES=$directories
+    PROJECTNAME=$1
+fi
+
+mkdir $PROJECTNAME
+cd $PROJECTNAME
+
+makedir() {
+    dir=$1
+    if [[ $(echo $dir | fgrep ".") ]]; then
+        # files
+        touch $dir
+    elif [[ $(echo $dir | grep "/$") ]]; then
+        # directories
+        mkdir -p $dir
+    fi
+}
+
+tmpparent=""
+for dir in $DIRECTORIES; do
+    if [[ $(echo $dir | grep "^|--") ]]; then
+    # subdirectory
+        child="$(echo $dir | sed -e 's/|--//')"
+        makedir "$tmpparent$child"
+    elif [[ $(echo $dir | grep "/$") ]]; then
+    # directory
+        makedir $dir
+        tmpparent=$dir
+    else
+        makedir $dir
+    fi
+done

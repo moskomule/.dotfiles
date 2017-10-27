@@ -7,7 +7,7 @@ for file in .??*; do
     if [[ "$file" == ".DS_Store" ]]; then
         continue
     fi
-    ln -fsv $HOME/.dotfiles/$file $HOME/$file
+    ln -fsv $file $HOME/$file
 done
 
 CONFIG=$HOME"/.config"
@@ -20,6 +20,6 @@ if [[ ! -e $DEIN ]]; then
 fi
 
 # nvim setup
-ln -fsnv $HOME/.dotfiles/.vim $CONFIG/nvim
-ln -fsnv $HOME/.dotfiles/.vimrc $CONFIG/nvim/init.vim
-ln -fsnv $HOME/.dotfiles/dein/plugins.toml $DEIN/plugins.toml
+ln -fsnv .vim $CONFIG/nvim
+ln -fsnv .vimrc $CONFIG/nvim/init.vim
+ln -fsnv dein/plugins.toml $DEIN/plugins.toml
