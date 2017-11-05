@@ -7,7 +7,7 @@ for file in .??*; do
     if [[ "$file" == ".DS_Store" ]]; then
         continue
     fi
-    ln -fsv $file $HOME/$file
+    ln -fsv $(pwd)/$file $HOME/$file
 done
 
 CONFIG=$HOME"/.config"
