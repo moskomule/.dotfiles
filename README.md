@@ -1,12 +1,18 @@
 # .dotfiles
 ## basics
-`bash setup.sh`
+
+```
+cd $HOME
+git clone https://github.com/moskomule/.dotfiles.git
+cd .dotfiles
+./setup.sh
+```
 
 ### zsh
 write machine specific settings in `~/.zshrc_`
 
 ### vim
-`.vimrc` and else are for neovim, instead of VIM.
+Changed to set `$XDG_CONFIG_HOME` from `~/.config` to this directory.
 
 Installing nvim for Ubuntu 16.04 is 
 
@@ -24,3 +30,9 @@ pip install neovim
 ## Python
 `bash ./getconda.sh` downloads and installs latest miniconda in `~/.miniconda`
 
+## scripts
+
+* imgcat: show image on iTerm2
+* docker-cleaner: unused Docker containers and images
+* jup2pdf: jupyter notebook to PDF using lualatex
+* mkproj: make a (machine learning) project directory

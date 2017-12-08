@@ -20,7 +20,7 @@ setopt EXTENDED_HISTORY
 
 # PATH
 export PATH=$PATH:${HOME}/.dotfiles/scripts
-export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CONFIG_HOME=${HOME}/.dotfiles
 
 # see http://www.sirochro.com/note/terminal-zsh-prompt-customize/
 # VCSの情報を取得するzsh関数

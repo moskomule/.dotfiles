@@ -20,6 +20,6 @@ if [[ ! -e $DEIN ]]; then
 fi
 
 # nvim setup
-ln -fsnv .vim $CONFIG/nvim
-ln -fsnv .vimrc $CONFIG/nvim/init.vim
-ln -fsnv dein/plugins.toml $DEIN/plugins.toml
+ln -sv .vim $CONFIG/nvim
+ln -sv .vimrc $CONFIG/nvim/init.vim
+ln -sv dein/plugins.toml $DEIN/plugins.toml

@@ -4,16 +4,18 @@
 # CONFIGFILE's format is as follow
 # * files must contains dot .
 # * directories must end with back-slash /
+# * files/directories start with * are ignored by git
 # * subdirectory/subfile must start with |-- without space(s)
 
 directories="
 .gitignore
 README.md
-data/
+*data/
 config/
-checkpoints/
+exec/
+*checkpoints/
 notebooks/
-results/
+*results/
 requirements.txt
 src/
 |--preprocessing/
@@ -21,7 +23,9 @@ src/
 |--models/
 |--visualization/
 |--utils/
+|--scripts/
 "
+
 
 # options
 if [[ $1 == "-f" ]]; then
@@ -38,8 +42,15 @@ fi
 mkdir $PROJECTNAME
 cd $PROJECTNAME
 
+ignorelist=("__pycache__" ".ipynb_checkpoints")
 makedir() {
     dir=$1
+
+    if [[ $(echo $dir | grep "^*") ]]; then
+        dir="$(echo $dir | sed -e 's/*//')"
+        ignorelist+=("$dir")
+    fi
+
     if [[ $(echo $dir | fgrep ".") ]]; then
         # files
         touch $dir
@@ -63,3 +74,11 @@ for dir in $DIRECTORIES; do
         makedir $dir
     fi
 done
+
+for ignored in "${ignorelist[@]}"; do
+    echo $ignored >> .gitignore
+done
+
+git init &> /dev/null
+git add . &> /dev/null
+echo "created $PROJECTNAME"
