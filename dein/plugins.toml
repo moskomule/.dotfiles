@@ -44,3 +44,11 @@ repo = 'zchee/deoplete-jedi'
 
 [[plugins]]
 repo = 'leafgarland/typescript-vim'
+
+[[plugins]]
+repo = 'rcmdnk/vim-markdown'
+on_ft = ['md', 'markdown']
+
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = ['go']

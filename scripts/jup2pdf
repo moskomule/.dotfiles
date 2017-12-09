@@ -8,7 +8,7 @@ tmpdir=$(mktemp -d)
 ln -s $(pwd)/$1 $tmpdir/
 cd $tmpdir
 
-cat <<EOD > jsarticle.tplx
+cat <<EOD > article.tplx
 % Default to the notebook output style
 ((* if not cell_style is defined *))
     ((* set cell_style = 'style_ipython.tplx' *))
@@ -33,7 +33,7 @@ cat <<EOD > jsarticle.tplx
 EOD
 
 FILENAME=$(basename $1 .ipynb)
-jupyter nbconvert --to latex --template jsarticle.tplx $1
+jupyter nbconvert --to latex --template article.tplx $1
 lualatex ${FILENAME}.tex
 
 cd -
