@@ -1,3 +1,4 @@
+let OSTYPE = system('uname')
 " own settings
 set number
 set ruler
@@ -26,8 +27,11 @@ set laststatus=2
 " enable use mouse in every mode
 set mouse=a
 " use clipboard
-set clipboard&
-set clipboard^=unnamedplus
+
+if OSTYPE == "Darwin\n"
+    set clipboard&
+    set clipboard^=unnamedplus
+endif
 
 " quit vim
 nnoremap <C-x> :qa<CR>
@@ -74,7 +78,6 @@ let g:dein#install_max_processes = 16
 let g:dein#install_progress_type = 'title'
 let g:dein#enable_notification = 1
 let s:toml      = '~/.config/dein/plugins.toml'
-" let s:lazy_toml = '~/.config/dein/plugins_lazy.toml'
 
 if dein#load_state(s:dein_dir)
     call dein#begin(s:dein_dir, [s:toml])

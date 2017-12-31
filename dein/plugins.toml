@@ -5,15 +5,7 @@ repo = 'Shougo/dein.vim'
 repo = 'Shougo/denite.nvim'
 
 [[plugins]]
-repo = 'hynek/vim-python-pep8-indent'
-on_ft = 'python'
-
-[[plugins]]
 repo = 'tomasr/molokai'
-
-[[plugins]]
-repo = 'derekwyatt/vim-scala'
-on_ft = 'scala'
 
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
@@ -31,24 +23,10 @@ repo = 'junegunn/vim-easy-align'
 repo = 'Shougo/neoyank.vim'
 
 [[plugins]]
-repo = 'rust-lang/rust.vim'
-
-[[plugins]]
 repo = 'vim-airline/vim-airline'
 
 [[plugins]]
 repo = 'vim-airline/vim-airline-themes'
 
 [[plugins]]
-repo = 'zchee/deoplete-jedi'
-
-[[plugins]]
-repo = 'leafgarland/typescript-vim'
-
-[[plugins]]
-repo = 'rcmdnk/vim-markdown'
-on_ft = ['md', 'markdown']
-
-[[plugins]]
-repo = 'fatih/vim-go'
-on_ft = ['go']
+repo = 'tpope/vim-fugitive'
