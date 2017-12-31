@@ -46,6 +46,8 @@ nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l>
 
+nmap <silent> <C-u><C-v> :e $XDG_CONFIG_HOME/nvim/init.vim<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " neovim terminal settings
 " launch a terminal below 
@@ -81,7 +83,7 @@ let g:dein#install_max_processes = 16
 let g:dein#install_progress_type = 'title'
 let g:dein#enable_notification = 1
 let s:toml = '$XDG_CONFIG_HOME/dein/plugins.toml'
-let s:lazy_toml = '$XDG_CONFIG_HOME/plugins_lazy.toml'
+let s:lazy_toml = '$XDG_CONFIG_HOME/dein/plugins_lazy.toml'
 
 if dein#load_state(s:dein_dir)
     call dein#begin(s:dein_dir, [s:toml])
