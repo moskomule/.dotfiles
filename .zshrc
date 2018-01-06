@@ -49,6 +49,8 @@ alias la='ls -la'
 alias lh='ls -lh'
 alias vim='nvim'
 alias setpythonpath='export PYTHONPATH=$(pwd)'
+alias jup='jupyter notebook'
+alias tma='tmux a'
 
 # functions
 mc(){
@@ -57,8 +59,6 @@ mc(){
     echo `pwd`
 }
 
-alias jup='jupyter notebook'
-alias tma='tmux a'
 
 # load custom setting
 [ -f ~/.zshrc_ ] && source ~/.zshrc_

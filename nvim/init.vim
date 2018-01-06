@@ -25,9 +25,6 @@ set laststatus=2
 
 " enable use mouse in every mode
 set mouse=a
-" use clipboard
-set clipboard&
-set clipboard^=unnamedplus
 
 " quit vim
 nnoremap <C-x> :qa<CR>
@@ -46,7 +43,7 @@ nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l>
 
-nmap <silent> <C-u><C-v> :e $XDG_CONFIG_HOME/nvim/init.vim<CR>
+nmap <silent> <C-u><C-v> :tabe $XDG_CONFIG_HOME/nvim/init.vim<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " neovim terminal settings
@@ -148,3 +145,10 @@ autocmd FileType python setlocal completeopt-=preview
 let g:airline_theme="light"
 " others
 let g:airline#extensions#tabline#enabled = 1
+
+
+" use clipboard
+if has('mac')
+    set clipboard&
+    set clipboard^=unnamedplus
+endif

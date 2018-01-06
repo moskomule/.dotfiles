@@ -1,14 +1,14 @@
 [[plugins]]
 repo = 'derekwyatt/vim-scala'
-on_ft = ['scala']
+on_ft = 'scala'
 
 [[plugins]]
 repo = 'hynek/vim-python-pep8-indent'
-on_ft = 'python'
+on_ft = 'py'
 
 [[plugins]]
 repo = 'zchee/deoplete-jedi'
-on_ft = 'python'
+on_ft = 'py'
 
 [[plugins]]
 repo = 'rust-lang/rust.vim'
@@ -16,12 +16,12 @@ on_ft = ['rs', 'rust']
 
 [[plugins]]
 repo = 'leafgarland/typescript-vim'
-on_ft = ['ts']
+on_ft = 'ts'
 
 [[plugins]]
 repo = 'rcmdnk/vim-markdown'
-on_ft = ['md', 'markdown']
+on_ft = 'md'
 
 [[plugins]]
 repo = 'fatih/vim-go'
-on_ft = ['go']
+on_ft = 'go'
