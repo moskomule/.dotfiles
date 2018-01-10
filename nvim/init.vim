@@ -32,7 +32,13 @@ nnoremap s <Nop>
 " split horizontally and move below
 nnoremap sh :split<CR> <C-w><C-j>
 " split vertically
+nnoremap s <Nop>
 nnoremap sv :vsplit<CR>
+nnoremap sh :split<CR>
+nnoremap t <Nop>
+nnoremap te :tabedit 
+nnoremap tt :tabnew
+nnoremap tn gt
 
 " escape from searching mode
 nnoremap <silent> <ESC><ESC> :nohlsearch<CR>
@@ -42,6 +48,8 @@ nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l>
+" maximize window
+nnoremap <C-w>z <C-w>_<C-w>|
 
 nmap <silent> <C-u><C-v> :tabe $XDG_CONFIG_HOME/nvim/init.vim<CR>
 
@@ -145,7 +153,21 @@ autocmd FileType python setlocal completeopt-=preview
 let g:airline_theme="light"
 " others
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#hunks#enabled = 1 
+let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#error_symbol = 'E:'
+let g:airline#extensions#ale#warning_symbol = 'W:'
 
+"ale
+let g:ale_linters = {
+\ 'python': ['autopep8'],
+\}
+let g:ale_fixers = {
+\ 'python': ['autopep8'],
+\}
+let g:ale_sign_column_always = 1
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+nnoremap <C-m> :ALEFix<CR>
 
 " use clipboard
 if has('mac')
