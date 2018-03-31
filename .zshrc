@@ -50,7 +50,7 @@ alias la='ls -la'
 alias lh='ls -lh'
 alias vim='nvim'
 alias setpythonpath='export PYTHONPATH=$(pwd)'
-alias jup='jupyter notebook'
+alias jup='jupyter lab'
 alias tma='tmux a'
 
 # functions

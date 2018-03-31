@@ -165,8 +165,8 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \ 'python': ['autopep8'],
 \}
-let g:ale_sign_column_always = 1
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+"let g:ale_sign_column_always = 1
+"let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 nnoremap <C-m> :ALEFix<CR>
 
 " use clipboard
