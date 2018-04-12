@@ -19,8 +19,8 @@ export SAVEHIST=1000
 setopt EXTENDED_HISTORY
 
 # PATH
-PATH="$HOME/.miniconda/bin:$PATH"
-export PATH=$PATH:${HOME}/.dotfiles/scripts
+export PATH="$HOME/.miniconda/bin:$PATH"
+export PATH="$PATH:${HOME}/.dotfiles/scripts"
 export XDG_CONFIG_HOME=${HOME}/.dotfiles
 
 # see http://www.sirochro.com/note/terminal-zsh-prompt-customize/
