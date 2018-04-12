@@ -48,10 +48,12 @@ PROMPT=$PROMPT'${vcs_info_msg_0_}%{${fg[red]}%}%}%{${reset_color}%}%# '
 alias ls='ls -GF'
 alias la='ls -la'
 alias lh='ls -lh'
-alias vim='nvim'
 alias setpythonpath='export PYTHONPATH=$(pwd)'
 alias jup='jupyter lab'
 alias tma='tmux a'
+if hash nvim 2>/dev/null; then
+    alias vim='nvim'
+fi
 
 # functions
 mc(){
