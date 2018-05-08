@@ -26,6 +26,9 @@ set laststatus=2
 " enable use mouse in every mode
 set mouse=a
 
+" save
+nnoremap <Space>w :w<CR>
+
 " quit vim
 nnoremap <C-x> :qa<CR>
 nnoremap s <Nop>
@@ -35,10 +38,13 @@ nnoremap sh :split<CR> <C-w><C-j>
 nnoremap s <Nop>
 nnoremap sv :vsplit<CR>
 nnoremap sh :split<CR>
+" tab
 nnoremap t <Nop>
-nnoremap te :tabedit 
-nnoremap tt :tabnew
+nnoremap te :tabedit  
+nnoremap tt :tabnew 
 nnoremap tn gt
+" buffer
+nnoremap B :b 
 
 " escape from searching mode
 nnoremap <silent> <ESC><ESC> :nohlsearch<CR>
@@ -102,9 +108,7 @@ if has('vim_starting') && dein#check_install()
     call dein#install()
 endif
 
-if has('nvim')
-	let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 let g:deoplete#enable_at_startup = 1
 
@@ -145,8 +149,10 @@ xmap ga <Plug>(EasyAlign)
 " start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
+
 " jedi-vim
 autocmd FileType python setlocal completeopt-=preview
+"let g:deoplete#sources#jedi#show_docstring = 1
 
 " vim-airline
 " theme settings

@@ -14,8 +14,9 @@ disable r # use ctrl+r instead
 
 # history
 export HISTFILE=${HOME}/.histfile
-export HISTSIZE=1000
-export SAVEHIST=1000
+setopt hist_ignore_all_dups
+export HISTSIZE=10000
+export SAVEHIST=10000
 setopt EXTENDED_HISTORY
 
 # PATH
