@@ -28,16 +28,18 @@ set mouse=a
 
 " save
 nnoremap <Space>w :w<CR>
+" quit
+nnoremap <Space>q :q<CR>
 
 " quit vim
 nnoremap <C-x> :qa<CR>
-nnoremap s <Nop>
+"nnoremap s <Nop>
 " split horizontally and move below
-nnoremap sh :split<CR> <C-w><C-j>
+"nnoremap sh :split<CR> <C-w><C-j>
 " split vertically
 nnoremap s <Nop>
-nnoremap sv :vsplit<CR>
-nnoremap sh :split<CR>
+nnoremap sv :vsplit 
+nnoremap sh :split 
 " tab
 nnoremap t <Nop>
 nnoremap te :tabedit  
@@ -57,19 +59,21 @@ nnoremap <C-l> <C-w><C-l>
 " maximize window
 nnoremap <C-w>z <C-w>_<C-w>|
 
-nmap <silent> <C-u><C-v> :tabe $XDG_CONFIG_HOME/nvim/init.vim<CR>
+nmap <silent> <C-u><C-v> :vsplit $XDG_CONFIG_HOME/nvim/init.vim<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" neovim terminal settings
-" launch a terminal below 
-nnoremap  <C-t> :split<CR> <C-w><C-j> :terminal<CR>
-" change to the terminal-command mode
-tnoremap <Esc> <C-\><C-n>
-" quit the terminal
-tnoremap <silent> <C-w> <C-\><C-n> :q! <CR>
-" move to the window above from terminal
-tnoremap <silent> <C-k> <C-\><C-n> <C-w><C-k>
-
+if has('nvim')
+    " neovim terminal settings
+    " launch a terminal below 
+    nnoremap  <C-t> :split<CR> <C-w><C-j> :terminal<CR>
+    " change to the terminal-command mode
+    tnoremap <Esc> <C-\><C-n>
+    " quit the terminal
+    tnoremap <silent> <C-w> <C-\><C-n> :q! <CR>
+    " move to the window above from terminal
+    tnoremap <silent> <C-k> <C-\><C-n> <C-w><C-k>
+endif
+    
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " dein settings
 if &compatible
@@ -93,13 +97,20 @@ execute 'set runtimepath^=' . s:dein_repo_dir
 let g:dein#install_max_processes = 16
 let g:dein#install_progress_type = 'title'
 let g:dein#enable_notification = 1
-let s:toml = '$XDG_CONFIG_HOME/dein/plugins.toml'
-let s:lazy_toml = '$XDG_CONFIG_HOME/dein/plugins_lazy.toml'
+
+if has('nvim')
+    let s:toml = '$XDG_CONFIG_HOME/dein/plugins.toml'
+    let s:lazy_toml = '$XDG_CONFIG_HOME/dein/plugins_lazy.toml'
+elseif
+    let s:toml = '$XDG_CONFIG_HOME/dein/plugins.vim.toml'
+endif
 
 if dein#load_state(s:dein_dir)
     call dein#begin(s:dein_dir, [s:toml])
     call dein#load_toml(s:toml, {'lazy': 0})
-    call dein#load_toml(s:lazy_toml, {'lazy': 1})
+    if has('nvim')
+        call dein#load_toml(s:lazy_toml, {'lazy': 1})
+    endif
     call dein#end()
     call dein#save_state()
 endif
@@ -110,29 +121,29 @@ endif
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-let g:deoplete#enable_at_startup = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " plugins' settings
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " denite settings
-nmap <silent> <C-u><C-b> :<C-u>Denite buffer<CR>
-nmap <silent> <C-u><C-f> :<C-u>Denite filetype<CR>
-nmap <silent> <C-u><C-p> :<C-u>Denite file_rec<CR>
-nmap <silent> <C-u><C-l> :<C-u>Denite line<CR>
-nmap <silent> <C-u><C-g> :<C-u>Denite grep<CR>
-nmap <silent> <C-u><C-u> :<C-u>Denite file_mru<CR>
-nmap <silent> <C-u><C-y> :<C-u>Denite neoyank<CR>
-
-" in denite/insert mode
-call denite#custom#map('insert', "<C-j>", '<denite:move_to_next_line>')
-call denite#custom#map('insert', "<C-k>", '<denite:move_to_previous_line>')
-call denite#custom#map('insert', "<C-t>", '<denite:do_action:tabopen>')
-call denite#custom#map('insert', "<C-v>", '<denite:do_action:vsplit>')
-call denite#custom#map('normal', "v", '<denite:do_action:vsplit>')
-
+if has('nvim')
+    nmap <silent> <C-u><C-b> :<C-u>Denite buffer<CR>
+    nmap <silent> <C-u><C-f> :<C-u>Denite filetype<CR>
+    nmap <silent> <C-u><C-p> :<C-u>Denite file_rec<CR>
+    nmap <silent> <C-u><C-l> :<C-u>Denite line<CR>
+    nmap <silent> <C-u><C-g> :<C-u>Denite grep<CR>
+    nmap <silent> <C-u><C-u> :<C-u>Denite file_mru<CR>
+    nmap <silent> <C-u><C-y> :<C-u>Denite neoyank<CR>
+    
+    " in denite/insert mode
+    call denite#custom#map('insert', "<C-j>", '<denite:move_to_next_line>')
+    call denite#custom#map('insert', "<C-k>", '<denite:move_to_previous_line>')
+    call denite#custom#map('insert', "<C-t>", '<denite:do_action:tabopen>')
+    call denite#custom#map('insert', "<C-v>", '<denite:do_action:vsplit>')
+    call denite#custom#map('normal', "v", '<denite:do_action:vsplit>')
+    
+endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " activate NERDTree
 map <C-n> :NERDTreeToggle<CR>
@@ -150,9 +161,13 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 
-" jedi-vim
-autocmd FileType python setlocal completeopt-=preview
-"let g:deoplete#sources#jedi#show_docstring = 1
+if has('nvim')
+    " deoplete
+    let g:deoplete#enable_at_startup = 1
+    " jedi-vim
+    autocmd FileType python setlocal completeopt-=preview
+    "let g:deoplete#sources#jedi#show_docstring = 1
+endif
 
 " vim-airline
 " theme settings

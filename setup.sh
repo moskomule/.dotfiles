@@ -9,3 +9,6 @@ for file in .??*; do
     fi
     ln -fsv $(pwd)/$file $HOME/$file
 done
+
+ln -s $(pwd)/nvim/init.vim ${HOME}/.vimrc
+ln -s $(pwd)/nvim/init.vim ${HOME}/.ideavimrc
