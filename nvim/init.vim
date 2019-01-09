@@ -20,6 +20,8 @@ set ignorecase
 set smartcase
 " go to the top if searching goes to the bottom
 set wrapscan
+" interactive replacing
+set inccommand=split
 " show status lines everytime
 set laststatus=2
 
@@ -152,7 +154,7 @@ if has('nvim') || v:version >= 800
     
     "ale
     let g:ale_linters = {
-    \ 'python': ['autopep8'],
+    \ 'python': ['autopep8', 'pyre'],
     \}
     let g:ale_fixers = {
     \ 'python': ['autopep8'],
