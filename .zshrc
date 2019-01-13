@@ -101,6 +101,6 @@ if (( $+commands[direnv] )); then
 fi
 
 fpath=(/usr/local/share/zsh-completions $fpath)
-source $(brew --prefix)/opt/zsh-autosuggestions/share/zsh-autosuggestions
+source $(brew --prefix)/opt/zsh-autosuggestions/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
