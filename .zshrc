@@ -45,6 +45,9 @@ precmd () { vcs_info }
 PROMPT='%n'
 PROMPT=$PROMPT'${vcs_info_msg_0_}%{${fg[red]}%}%}%{${reset_color}%}%# '
 
+# custom path
+[ -f ~/.zshrc_ ] && source ~/.zshrc_
+
 # Aliases
 alias ls='ls -GF'
 alias la='ls -la'
@@ -100,6 +103,4 @@ fi
 fpath=(/usr/local/share/zsh-completions $fpath)
 source $(brew --prefix)/opt/zsh-autosuggestions/share/zsh-autosuggestions
 # source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-# load custom setting
-[ -f ~/.zshrc_ ] && source ~/.zshrc_
 
