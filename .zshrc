@@ -49,11 +49,19 @@ PROMPT=$PROMPT'${vcs_info_msg_0_}%{${fg[red]}%}%}%{${reset_color}%}%# '
 alias ls='ls -GF'
 alias la='ls -la'
 alias lh='ls -lh'
-alias setpythonpath='export PYTHONPATH=$(pwd)'
 alias jup='jupyter lab'
 alias tma='tmux a'
-if hash nvim 2>/dev/null; then
+
+if (( $+commands[nvim] )); then
     alias vim='nvim'
+fi
+
+if (( $+commands[bat] )); then
+    alias cat='bat'
+fi
+
+if (( $+commands[exa] )); then
+    alias ls='exa --git'
 fi
 
 # functions
@@ -63,7 +71,34 @@ mc(){
     echo `pwd`
 }
 
+if (( $+commands[peco] )); then
+    alias -g P='| peco'
+    function peco-select-history() {
+        BUFFER=$(fc -l -r -n 1 | peco --query "$LBUFFER")
+        CURSOR=$#BUFFER
+        zle redisplay
+    }
+    zle -N peco-select-history
+    bindkey '^r' peco-select-history
+    
+    function peco-src() {
+        local selected_dir=$(ghq list | peco --query "$LBUFFER")
+        if [ -n "$selected_dir" ]; then
+            BUFFER="cd ${HOME}/.ghq/${selected_dir}"
+            zle accept-line
+        fi
+        zle redisplay
+    }
+    zle -N peco-src
+    bindkey '^g' peco-src
+fi
 
+if (( $+commands[direnv] )); then
+    eval "$(direnv hook zsh)"
+fi
+
+fpath=(/usr/local/share/zsh-completions $fpath)
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # load custom setting
 [ -f ~/.zshrc_ ] && source ~/.zshrc_
 
