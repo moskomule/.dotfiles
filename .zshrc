@@ -98,7 +98,8 @@ if (( $+commands[direnv] )); then
 fi
 
 fpath=(/usr/local/share/zsh-completions $fpath)
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/opt/zsh-autosuggestions/share/zsh-autosuggestions
+# source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # load custom setting
 [ -f ~/.zshrc_ ] && source ~/.zshrc_
 
