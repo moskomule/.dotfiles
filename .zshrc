@@ -25,7 +25,6 @@ export PATH="$PATH:${HOME}/.dotfiles/scripts"
 export XDG_CONFIG_HOME=${HOME}/.dotfiles
 
 # see http://www.sirochro.com/note/terminal-zsh-prompt-customize/
-# VCSの情報を取得するzsh関数
 autoload -Uz vcs_info
 autoload -Uz colors # black red green yellow blue magenta cyan white
 colors
@@ -100,7 +99,16 @@ if (( $+commands[direnv] )); then
     eval "$(direnv hook zsh)"
 fi
 
-fpath=(/usr/local/share/zsh-completions $fpath)
-source $(brew --prefix)/opt/zsh-autosuggestions/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-# source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fpath=( /usr/local/share/zsh-completions $fpath )
+fpath=( "$HOME/.dotfiles/zsh" $fpath )
+if (( $+commands[brew] )); then
+    if [[ -a $(brew --prefix)/opt/zsh-autosuggestions/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]];then
+        source $(brew --prefix)/opt/zsh-autosuggestions/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    fi
+fi
+
+if [[ -d "$HOME/.dotfiles/zsh" ]]; then
+    autoload -U promptinit; promptinit
+    prompt pure
+fi
 

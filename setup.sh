@@ -11,4 +11,9 @@ for file in .??*; do
 done
 
 ln -s $(pwd)/nvim/init.vim ${HOME}/.vimrc
-ln -s $(pwd)/nvim/init.vim ${HOME}/.ideavimrc
+
+if [[ -e "$HOME/.dotfiles/zsh/pure" ]]; then
+    ln -s $HOME/.dotfiles/zsh/pure/pure.zsh $HOME/.dotfiles/zsh/prompt_pure_setup
+    ln -s $HOME/.dotfiles/zsh/pure/async.zsh $HOME/.dotfiles/zsh/async
+fi
+
