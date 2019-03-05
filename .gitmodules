@@ -1,3 +1,6 @@
 [submodule "zsh/pure"]
 	path = zsh/pure
 	url = https://github.com/sindresorhus/pure.git
+[submodule ".vim/dein/repos/github.com/Shougo/dein.vim"]
+	path = .vim/dein/repos/github.com/Shougo/dein.vim
+	url = https://github.com/Shougo/dein.vim.git
