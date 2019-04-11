@@ -3,10 +3,12 @@
 
 ```
 cd $HOME
-git clone https://github.com/moskomule/.dotfiles.git
+git clone --recursive https://github.com/moskomule/.dotfiles.git
 cd .dotfiles
 ./setup.sh
 ```
+
+Maybe you need `gut submodule update --init --recursive`
 
 ### zsh
 write machine specific settings in `~/.zshrc_`
