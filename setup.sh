@@ -6,6 +6,12 @@ cd ${HOME}
 if [[ $@ == "" ]]; then
     git clone --recursive https://github.com/moskomule/.dotfiles.git
 fi
+
+if [[ $1 == "test" ]]; then
+# circle CI environment
+    DOTFILES_DIR=/home/circleci/project
+fi
+
 cd ${DOTFILES_DIR}
 
 if [[ -e ${HOME}/.zshrc ]]; then

@@ -9,4 +9,5 @@ jobs:
           name: run tests
           command: |
             git submodule update --init --recursive
-            bash setup.sh install
+            bash setup.sh test
+            ls -alh $HOME

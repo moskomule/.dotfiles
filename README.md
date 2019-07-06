@@ -1,4 +1,4 @@
-# .dotfiles
+# .dotfiles [![CircleCI](https://circleci.com/gh/moskomule/.dotfiles.svg?style=svg)](https://circleci.com/gh/moskomule/.dotfiles)
 ## basics
 
 
