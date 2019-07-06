@@ -7,6 +7,11 @@ cd .dotfiles
 if [[ -e ${HOME}/.zshrc ]]; then
     mv ${HOME}/.zshrc ${HOME}/.zshrc.backup
 fi
+
+if [[ -3 ${HOME}/.vimrc ]]; then
+    mv ${HOME}/.vimrc ${HOME}/.vimrc.backup
+fi
+
 echo "source ${PWD}/zsh/shared" >> ${HOME}/.zshrc
 
 if [[ ${XDG_CONFIG_HOME} == "" ]]; then
