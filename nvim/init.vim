@@ -84,7 +84,7 @@ if has('nvim') || v:version >= 800
     if &compatible
         set nocompatible
     endif
-    
+
     " reset augroup
     augroup MyAutoCmd
       autocmd!
