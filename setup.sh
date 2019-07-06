@@ -8,7 +8,7 @@ if [[ -e ${HOME}/.zshrc ]]; then
     mv ${HOME}/.zshrc ${HOME}/.zshrc.backup
 fi
 
-if [[ -3 ${HOME}/.vimrc ]]; then
+if [[ -e ${HOME}/.vimrc ]]; then
     mv ${HOME}/.vimrc ${HOME}/.vimrc.backup
 fi
 
