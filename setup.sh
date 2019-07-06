@@ -1,19 +1,21 @@
 #!/bin/bash
 
-for file in .??*; do
-    if [[ "$file" == ".git" ]]; then 
-        continue 
-    fi
-    if [[ "$file" == ".DS_Store" ]]; then
-        continue
-    fi
-    ln -fsv $(pwd)/$file $HOME/$file
-done
+cd ${HOME}
+git clone --recursive https://github.com/moskomule/.dotfiles.git
+cd .dotfiles
 
-ln -s $(pwd)/nvim/init.vim ${HOME}/.vimrc
+ln -s ${PWD}/.tmux.conf ${HOME}/.tmux.conf
+ln -s ${PWD}/nvim/init.vim ${HOME}/.vimrc
+mkdir -p ${XDG_CONFIG_HOME}/nvim
+ln -s ${PWD}/nvim/init.vim ${XDG_CONFIG_HOME}/nvim/init.vim
 
-if [[ -e "$HOME/.dotfiles/zsh/pure" ]]; then
-    ln -s $HOME/.dotfiles/zsh/pure/pure.zsh $HOME/.dotfiles/zsh/prompt_pure_setup
-    ln -s $HOME/.dotfiles/zsh/pure/async.zsh $HOME/.dotfiles/zsh/async
+if [[ -e ${HOME}/.zshrc ]]; then
+    mv ${HOME}/.zshrc ${HOME}/.zshrc.backup
 fi
 
+echo "source ${PWD}/zsh/shared" >> ${HOME}/.zshrc
+
+if [[ -e "${PWD}/zsh/pure" ]]; then
+    ln -s ${PWD}/zsh/pure/pure.zsh ${PWD}/zsh/prompt_pure_setup
+    ln -s ${PWD}/zsh/pure/async.zsh ${PWD}/.dotfiles/zsh/async
+fi
