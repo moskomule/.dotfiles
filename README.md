@@ -6,14 +6,14 @@
 
 ```
 cd $HOME
-curl -L raw.github.com/moskomule/.dotfiles/master/setup.sh | bash
+curl -sSL raw.github.com/moskomule/.dotfiles/master/setup.sh | bash
 ```
 
 ## Homebrew
 
-Install homebrew
+Install homebrew via
 
-`/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`,
+`bash ./getbrew.sh`
 
 and unpack the bundled from `Brewfile`
 

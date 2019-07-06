@@ -7,4 +7,6 @@ jobs:
       - checkout
       - run:
           name: run tests
-          command: curl -L raw.github.com/moskomule/.dotfiles/master/setup.sh | bash
+          command: -
+            git submodule update --init --recursive
+            bash setupt.sh install
