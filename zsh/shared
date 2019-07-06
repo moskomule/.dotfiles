@@ -20,15 +20,11 @@ export SAVEHIST=10000
 setopt EXTENDED_HISTORY
 
 # PATH
-export PATH="$PATH:${HOME}/.dotfiles/scripts"
-export XDG_CONFIG_HOME=${HOME}/.dotfiles
+# export XDG_CONFIG_HOME=${HOME}/.dotfiles
 
 # see http://www.sirochro.com/note/terminal-zsh-prompt-customize/
 autoload -Uz colors # black red green yellow blue magenta cyan white
 colors
-
-# custom path
-[ -f ~/.zshrc_ ] && source ~/.zshrc_
 
 # Aliases
 alias ls='ls -GF'
@@ -47,6 +43,10 @@ fi
 
 if (( $+commands[exa] )); then
     alias ls='exa --git'
+fi
+
+if (( $+commands[hub] )); then
+    alias git='hub'
 fi
 
 # functions

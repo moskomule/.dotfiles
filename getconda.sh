@@ -8,4 +8,4 @@ fi
 wget $URL -O miniconda.sh
 bash miniconda.sh -b -p $HOME/.miniconda
 touch $HOME/.zshrc_
-echo export PATH="$HOME/.miniconda/bin:$PATH" >> $HOME/.zshrc_
+echo export PATH="$HOME/.miniconda/bin:$PATH" >> $HOME/.zshrc
