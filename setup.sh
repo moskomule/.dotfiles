@@ -24,7 +24,7 @@ fi
 
 echo "source ${DOTFILES_DIR}/zsh/shared" >> ${HOME}/.zshrc
 
-if [[ ${XDG_CONFIG_HOME} == "" ]]; then
+if [[ ${XDG_CONFIG_HOME} == "" ]] || [[ ${XDG_CONFIG_HOME} == ${DOTFILES_DIR} ]] ; then
     XDG_CONFIG_HOME=${HOME}/.config
     echo "export XDG_CONFIG_HOME=${HOME}/.config" >> ${HOME}/.zshrc
 fi
