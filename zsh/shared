@@ -1,0 +1,96 @@
+bindkey -e
+setopt nonomatch # no nomatch error for sth like [x]
+autoload -U compinit; compinit
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt auto_cd
+setopt share_history
+setopt extended_glob
+setopt prompt_subst
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+setopt complete_aliases
+disable r # use ctrl+r instead
+
+# history
+export HISTFILE=${HOME}/.histfile
+setopt hist_ignore_all_dups
+export HISTSIZE=10000
+export SAVEHIST=10000
+setopt EXTENDED_HISTORY
+
+# PATH
+# export XDG_CONFIG_HOME=${HOME}/.dotfiles
+
+# see http://www.sirochro.com/note/terminal-zsh-prompt-customize/
+autoload -Uz colors # black red green yellow blue magenta cyan white
+colors
+
+# Aliases
+alias ls='ls -GF'
+alias la='ls -la'
+alias lh='ls -lh'
+alias jup='jupyter lab'
+alias tma='tmux a'
+
+if (( $+commands[nvim] )); then
+    alias vim='nvim'
+fi
+
+if (( $+commands[bat] )); then
+    alias cat='bat'
+fi
+
+if (( $+commands[exa] )); then
+    alias ls='exa --git'
+fi
+
+if (( $+commands[hub] )); then
+    alias git='hub'
+fi
+
+# functions
+mc(){
+    mkdir $1
+    cd $1
+    echo `pwd`
+}
+
+if (( $+commands[peco] )); then
+    alias -g P='| peco'
+    function peco-select-history() {
+        BUFFER=$(fc -l -r -n 1 | peco --query "$LBUFFER")
+        CURSOR=$#BUFFER
+        zle redisplay
+    }
+    zle -N peco-select-history
+    bindkey '^r' peco-select-history
+    
+    function peco-src() {
+        local selected_dir=$(ghq list | peco --query "$LBUFFER")
+        if [ -n "$selected_dir" ]; then
+            BUFFER="cd ${HOME}/.ghq/${selected_dir}"
+            zle accept-line
+        fi
+        zle redisplay
+    }
+    zle -N peco-src
+    bindkey '^g' peco-src
+fi
+
+if (( $+commands[direnv] )); then
+    eval "$(direnv hook zsh)"
+fi
+
+fpath=( /usr/local/share/zsh-completions $fpath )
+fpath=( "$HOME/.dotfiles/zsh" $fpath )
+if (( $+commands[brew] )); then
+    if [[ -a $(brew --prefix)/opt/zsh-autosuggestions/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]];then
+        source $(brew --prefix)/opt/zsh-autosuggestions/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    fi
+fi
+
+if [[ -d "$HOME/.dotfiles/zsh" ]]; then
+    autoload -U promptinit; promptinit
+    prompt pure
+fi

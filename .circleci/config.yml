@@ -1,0 +1,10 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.7
+    steps:
+      - checkout
+      - run:
+          name: run tests
+          command: curl -L raw.github.com/moskomule/.dotfiles/master/setup.sh | bash
