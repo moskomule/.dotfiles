@@ -7,6 +7,6 @@ jobs:
       - checkout
       - run:
           name: run tests
-          command: -
+          command: |
             git submodule update --init --recursive
             bash setupt.sh install
