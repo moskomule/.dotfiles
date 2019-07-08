@@ -20,7 +20,7 @@ export SAVEHIST=10000
 setopt EXTENDED_HISTORY
 
 # PATH
-# export XDG_CONFIG_HOME=${HOME}/.dotfiles
+export PATH="${PATH}:${HOME}/.dotfiles/bin"
 
 # see http://www.sirochro.com/note/terminal-zsh-prompt-customize/
 autoload -Uz colors # black red green yellow blue magenta cyan white
@@ -83,14 +83,14 @@ if (( $+commands[direnv] )); then
 fi
 
 fpath=( /usr/local/share/zsh-completions $fpath )
-fpath=( "$HOME/.dotfiles/zsh" $fpath )
+fpath=( "${HOME}/.dotfiles/zsh" $fpath )
 if (( $+commands[brew] )); then
     if [[ -a $(brew --prefix)/opt/zsh-autosuggestions/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]];then
         source $(brew --prefix)/opt/zsh-autosuggestions/share/zsh-autosuggestions/zsh-autosuggestions.zsh
     fi
 fi
 
-if [[ -d "$HOME/.dotfiles/zsh" ]]; then
+if [[ -d "${HOME}/.dotfiles/zsh" ]]; then
     autoload -U promptinit; promptinit
     prompt pure
 fi
