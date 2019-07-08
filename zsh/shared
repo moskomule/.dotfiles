@@ -84,12 +84,8 @@ fi
 
 fpath=( /usr/local/share/zsh-completions $fpath )
 fpath=( "${HOME}/.dotfiles/zsh" $fpath )
-if (( $+commands[brew] )); then
-    if [[ -a $(brew --prefix)/opt/zsh-autosuggestions/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]];then
-        source $(brew --prefix)/opt/zsh-autosuggestions/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-    fi
-fi
 
+source ${HOME}/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 if [[ -d "${HOME}/.dotfiles/zsh" ]]; then
     autoload -U promptinit; promptinit
     prompt pure

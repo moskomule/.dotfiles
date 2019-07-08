@@ -33,3 +33,7 @@ Write machine specific settings in `~/.zshrc`
 ## Python
 
 `bash ./getconda.sh` downloads and installs latest miniconda in `~/.miniconda`
+
+## Update
+
+`./update.sh`
