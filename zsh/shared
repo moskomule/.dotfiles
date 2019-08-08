@@ -79,6 +79,7 @@ if (( $+commands[peco] )); then
 fi
 
 if (( $+commands[direnv] )); then
+    export EDITOR=nvim
     eval "$(direnv hook zsh)"
 fi
 
