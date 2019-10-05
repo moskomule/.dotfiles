@@ -1,5 +1,6 @@
 bindkey -e
 setopt nonomatch # no nomatch error for sth like [x]
+setopt interactivecomments
 autoload -U compinit; compinit
 setopt auto_pushd
 setopt pushd_ignore_dups
