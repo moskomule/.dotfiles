@@ -1,5 +1,6 @@
 SHELL=/bin/bash
-DOTFILES_DIR=${HOME}/.dotfiles
+#DOTFILES_DIR=${HOME}/.dotfiles
+$(eval DOTFILES_DIR:=$(if $(DOTFILES_DIR),$(DOTFILES_DIR),${HOME}/.dotfiles))
 XDG_CONFIG_HOME_=${XDG_CONFIG_HOME}
 
 minimum: zsh_initialize vim_initialize tmux_initialize direnv_initialize 
