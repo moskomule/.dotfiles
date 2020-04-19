@@ -17,8 +17,6 @@ zsh_initialize:
 		cp ${HOME}/.zshrc ${HOME}/.zshrc.backup; \
 	fi
 	@echo "source ${DOTFILES_DIR}/zsh/shared" >> ${HOME}/.zshrc
-	@ln -sfv ${DOTFILES_DIR}/zsh/pure/pure.zsh ${DOTFILES_DIR}/zsh/prompt_pure_setup
-	@ln -sfv ${DOTFILES_DIR}/zsh/pure/async.zsh ${DOTFILES_DIR}/zsh/async
 
 
 vim_initialize: xdg_config

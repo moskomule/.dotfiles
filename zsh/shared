@@ -87,8 +87,7 @@ fi
 fpath=( /usr/local/share/zsh-completions $fpath )
 fpath=( "${HOME}/.dotfiles/zsh" $fpath )
 
+fpath+=${HOME}/.dotfiles/zsh/pure
+autoload -U promptinit; promptinit
+prompt pure
 source ${HOME}/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-if [[ -d "${HOME}/.dotfiles/zsh" ]]; then
-    autoload -U promptinit; promptinit
-    prompt pure
-fi
