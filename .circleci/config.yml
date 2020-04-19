@@ -9,5 +9,4 @@ jobs:
           name: run tests
           command: |
             git submodule update --init --recursive
-            export HOME=/home/circleci/project
             bash setup.sh test
