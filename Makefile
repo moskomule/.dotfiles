@@ -5,6 +5,10 @@ XDG_CONFIG_HOME_=${XDG_CONFIG_HOME}
 minimum: zsh_initialize vim_initialize tmux_initialize direnv_initialize 
 	@echo "Finished minimum installation of .dotfiles"
 
+echo:
+	# for debug
+	echo ${DOTFILES_DIR}
+
 all: minimum brew_bundle conda_install
 	@echo "Finished installation of brew and conda"
 

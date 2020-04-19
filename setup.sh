@@ -10,6 +10,7 @@ fi
 if [[ $1 == "test" ]]; then
     # circle CI environment
     DOTFILES_DIR=/home/circleci/project
+    make echo
 fi
 
 make minimum
