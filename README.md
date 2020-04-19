@@ -9,21 +9,24 @@ cd $HOME
 curl -sSL raw.github.com/moskomule/.dotfiles/master/setup.sh | bash
 ```
 
-## Homebrew
-
-Install homebrew via `make `
-
-
-and unpack the bundled from `Brewfile`
+or
 
 ```
-cd $HOME/.dotfiles
-brew bundle
+cd $HOME
+git clone --recursive https://github.com/moskomule/.dotfiles.git
+cd .dotfiles
+make [all]
+```
+
+## Homebrew
+
+```
+make brew_bundle
 ```
 
 ## zsh
 
-Write machine specific settings in `~/.zshrc`
+Add machine specific settings to `~/.zshrc`.
 
 ## tmux
 
@@ -31,8 +34,8 @@ Write machine specific settings in `~/.zshrc`
 
 ## Python
 
-`bash ./getconda.sh` downloads and installs latest miniconda in `~/.miniconda`
+`make conda_install` will install miniconda to `$HOME/.miniconda`.
 
 ## Update
 
-`./update.sh`
+`make update`
