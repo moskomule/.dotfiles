@@ -137,7 +137,10 @@ if has('nvim') || v:version >= 800
 
 
     " deoplete
+    " use <CR> to select candidates
+    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
     let g:deoplete#enable_at_startup = 1
+
     " jedi-vim
     autocmd FileType python setlocal completeopt-=preview
     "let g:deoplete#sources#jedi#show_docstring = 1

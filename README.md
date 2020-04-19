@@ -11,9 +11,8 @@ curl -sSL raw.github.com/moskomule/.dotfiles/master/setup.sh | bash
 
 ## Homebrew
 
-Install homebrew via
+Install homebrew via `make `
 
-`bash ./getbrew.sh`
 
 and unpack the bundled from `Brewfile`
 
