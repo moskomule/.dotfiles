@@ -136,6 +136,10 @@ if has('nvim') || v:version >= 800
     nmap ga <Plug>(EasyAlign)
 
 
+    " python
+    let g:python_host_prog = expand('$HOME/.dotfiles/venv/bin/python')
+    let g:python3_host_prog = expand('$HOME/.dotfiles/venv/bin/python')
+
     " deoplete
     let g:deoplete#enable_at_startup = 1
 
