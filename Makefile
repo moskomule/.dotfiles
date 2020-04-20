@@ -31,7 +31,7 @@ vim_initialize: xdg_config
 	@ln -sfv ${DOTFILES_DIR}/dein ${XDG_CONFIG_HOME}/dein
 	@python -m venv venv \
 		&& ${DOTFILES_DIR}/venv/bin/pip install -U pip \
-		&& ${DOTFILES_DIR}/venv/bin/pip install -U neovim
+		&& ${DOTFILES_DIR}/venv/bin/pip install -U pynvim
 
 
 xdg_config:
@@ -54,6 +54,8 @@ clean:
 		mv ${HOME}/.vimrc.backup ${HOME}/.vimrc;\
 	fi
 	@rm -rf ${XDG_CONFIG_DIR}/nvim ${XDG_CONFIG_DIR}/dein
+	@echo "Cleaned!"
+
 
 update:
 	@git pull && git submodule update --init --recursive --remote

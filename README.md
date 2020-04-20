@@ -24,6 +24,8 @@ make [all]
 make brew_bundle
 ```
 
+## NeoVim
+
 ## zsh
 
 Add machine specific settings to `~/.zshrc`.
@@ -38,4 +40,8 @@ Add machine specific settings to `~/.zshrc`.
 
 ## Update
 
-`make update`
+`make update` will update dependencies.
+
+## Clean
+
+`make clean` will remove installed dotfiles. Note that this command will not brew and conda.

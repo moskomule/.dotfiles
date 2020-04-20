@@ -137,7 +137,7 @@ if has('nvim') || v:version >= 800
 
 
     " python
-    let g:python_host_prog = expand('$HOME/.dotfiles/venv/bin/python')
+    "let g:python_host_prog = expand('$HOME/.dotfiles/venv/bin/python')
     let g:python3_host_prog = expand('$HOME/.dotfiles/venv/bin/python')
 
     " deoplete
