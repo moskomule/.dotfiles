@@ -1,16 +1,18 @@
 SHELL=/bin/bash
 $(eval DOTFILES_DIR:=$(if $(DOTFILES_DIR),$(DOTFILES_DIR),${HOME}/.dotfiles))
-XDG_CONFIG_HOME_=${XDG_CONFIG_HOME}
+$(eval XDG_CONFIG_HOME:=$(if $(XDG_CONFIG_HOME),$(XDG_CONFIG_HOME),${HOME}/.dotfiles))
+
 
 minimum: zsh_initialize vim_initialize tmux_initialize direnv_initialize 
 	@echo "Finished minimum installation of .dotfiles"
 
-echo:
-	# for debug
-	echo ${DOTFILES_DIR}
 
 all: minimum brew_bundle conda_install
 	@echo "Finished installation of brew and conda"
+
+
+test: minimum update clean
+	@echo "Test Finished!"
 
 zsh_initialize:
 	@if [[ -e ${HOME}/.zshrc ]]; then \
@@ -24,14 +26,13 @@ vim_initialize: xdg_config
 		mv ${HOME}/.vimrc ${HOME}/.vimrc.backup; \
 	fi
 	@ln -sfv ${DOTFILES_DIR}/nvim/init.vim ${HOME}/.vimrc
-	@mkdir -p ${XDG_CONFIG_HOME_}/nvim
-	@ln -sfv ${DOTFILES_DIR}/nvim/init.vim ${XDG_CONFIG_HOME_}/nvim/init.vim
-	@ln -sfv ${DOTFILES_DIR}/dein ${XDG_CONFIG_HOME_}/dein
+	@mkdir -p ${XDG_CONFIG_HOME}/nvim
+	@ln -sfv ${DOTFILES_DIR}/nvim/init.vim ${XDG_CONFIG_HOME}/nvim/init.vim
+	@ln -sfv ${DOTFILES_DIR}/dein ${XDG_CONFIG_HOME}/dein
 
 
 xdg_config:
-	$(eval XDG_CONFIG_HOME_:=$(if $(XDG_CONFIG_HOME_),$(XDG_CONFIG_HOME_),${HOME}/.config))
-	@echo "export XDG_CONFIG_HOME=${XDG_CONFIG_HOME_}" >> ${HOME}/.zshrc
+	@echo "export XDG_CONFIG_HOME=${XDG_CONFIG_HOME}" >> ${HOME}/.zshrc
 
 
 tmux_initialize:
@@ -41,6 +42,15 @@ tmux_initialize:
 direnv_initialize:
 	@ln -sfv ${DOTFILES_DIR}/.direnvrc ${HOME}/.direnvrc
 
+
+clean:
+	@if [[ -e ${HOME}/.zshrc.backup ]]; then \
+		mv ${HOME}/.zshrc.backup ${HOME}/.zshrc;\
+	fi
+	@if [[ -e ${HOME}/.vimrc.backup ]]; then \
+		mv ${HOME}/.vimrc.backup ${HOME}/.vimrc;\
+	fi
+	@rm -rf ${XDG_CONFIG_DIR}/nvim ${XDG_CONFIG_DIR}/dein
 
 update:
 	@git pull && git submodule update --init --recursive --remote
