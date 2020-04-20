@@ -32,6 +32,8 @@ alias ls='ls -GF'
 alias la='ls -la'
 alias lh='ls -lh'
 alias jup='jupyter lab'
+
+alias tmux='direnv exec / tmux'
 alias tma='tmux a'
 
 if (( $+commands[nvim] )); then
