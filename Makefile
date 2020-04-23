@@ -1,6 +1,6 @@
 SHELL=/bin/bash
 $(eval DOTFILES_DIR:=$(if $(DOTFILES_DIR),$(DOTFILES_DIR),${HOME}/.dotfiles))
-$(eval XDG_CONFIG_HOME:=$(if $(XDG_CONFIG_HOME),$(XDG_CONFIG_HOME),${HOME}/.dotfiles))
+$(eval XDG_CONFIG_HOME:=$(if $(XDG_CONFIG_HOME),$(XDG_CONFIG_HOME),${HOME}/.config))
 
 
 minimum: zsh_initialize vim_initialize tmux_initialize direnv_initialize 
