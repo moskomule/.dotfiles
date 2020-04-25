@@ -30,3 +30,6 @@ repo = 'vim-airline/vim-airline-themes'
 
 [[plugins]]
 repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'joshdick/onedark.vim'

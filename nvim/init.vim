@@ -1,5 +1,4 @@
 """ moskomule .vimrc
-set number
 set ruler
 set encoding=UTF-8
 set fileencoding=UTF-8
@@ -28,27 +27,14 @@ set laststatus=2
 " enable use mouse in every mode
 set mouse=a
 
+" costum keymapping
 " save
 nnoremap <Space>w :w<CR>
 " quit
 nnoremap <Space>q :q<CR>
-
 " quit vim
 nnoremap <C-x> :qa<CR>
-"nnoremap s <Nop>
-" split horizontally and move below
-"nnoremap sh :split<CR> <C-w><C-j>
-" split vertically
-nnoremap s <Nop>
-nnoremap sv :vsplit 
-nnoremap sh :split 
-" tab
-nnoremap t <Nop>
-nnoremap te :tabedit  
-nnoremap tt :tabnew 
-nnoremap tn gt
-" buffer
-nnoremap B :b 
+
 
 " escape from searching mode
 nnoremap <silent> <ESC><ESC> :nohlsearch<CR>
@@ -58,38 +44,19 @@ nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l>
-" maximize window
-nnoremap <C-w>z <C-w>_<C-w>|
 
-nmap <silent> <C-u><C-v> :vsplit $XDG_CONFIG_HOME/nvim/init.vim<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has('nvim')
-    " neovim terminal settings
-    " launch a terminal below 
-    nnoremap  <C-t> :split<CR> <C-w><C-j> :terminal<CR>
-    " change to the terminal-command mode
-    tnoremap <Esc> <C-\><C-n>
-    " quit the terminal
-    tnoremap <silent> <C-w> <C-\><C-n> :q! <CR>
-    " move to the window above from terminal
-    tnoremap <silent> <C-k> <C-\><C-n> <C-w><C-k>
-endif
-    
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" dein settings
 
 if has('nvim') || v:version >= 800
     if &compatible
         set nocompatible
     endif
 
-    " reset augroup
+    
     augroup MyAutoCmd
       autocmd!
     augroup END
     
+    " dein settings
     let s:cache_home = empty($XDG_CACHE_HOME) ? expand('$HOME/.cache') : $XDG_CACHE_HOME
     let s:dein_dir = s:cache_home . '/dein'
     let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
@@ -127,6 +94,7 @@ if has('nvim') || v:version >= 800
     " launch ndtree automatically
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+    " ignore extensions
     let NERDTreeIgnore = ['.(tgz|gz|zip)$' ]
     
     " EasyAlign
@@ -135,13 +103,37 @@ if has('nvim') || v:version >= 800
     " start interactive EasyAlign for a motion/text object (e.g. gaip)
     nmap ga <Plug>(EasyAlign)
 
-
     " python
-    "let g:python_host_prog = expand('$HOME/.dotfiles/venv/bin/python')
     let g:python3_host_prog = expand('$HOME/.dotfiles/venv/bin/python')
 
     " deoplete
     let g:deoplete#enable_at_startup = 1
+
+    " denite
+    nmap <silent> ,f :<C-u>Denite file/rec<CR>
+    nmap <silent> ,g :<C-u>Denite grep<CR>
+    nmap <silent> ,b :<C-u>Denite buffer<CR>
+    autocmd FileType denite call s:denite_my_settings()
+    function! s:denite_my_settings() abort
+        " enter = open in denite
+        nnoremap <silent><buffer><expr> <CR> denite#do_map('do_action') 
+        nnoremap <silent><buffer><expr> p denite#do_map('do_action', 'preview') 
+        nnoremap <silent><buffer><expr> <ESC> denite#do_map('quit') 
+        nnoremap <silent><buffer><expr> q denite#do_map('quit') 
+        nnoremap <silent><buffer><expr> i denite#do_map('open_filter_buffer')
+    endfunction
+
+    let s:denite_win_width_percent = 0.85
+    let s:denite_win_height_percent = 0.7
+    
+    " Change denite default options
+    call denite#custom#option('default', {
+        \ 'split': 'floating',
+        \ 'winwidth': float2nr(&columns * s:denite_win_width_percent),
+        \ 'wincol': float2nr((&columns - (&columns * s:denite_win_width_percent)) / 2),
+        \ 'winheight': float2nr(&lines * s:denite_win_height_percent),
+        \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_percent)) / 2),
+        \ })
 
     " jedi-vim
     autocmd FileType python setlocal completeopt-=preview
@@ -152,8 +144,7 @@ if has('nvim') || v:version >= 800
 
     " vim-airline
     " theme settings
-    let g:airline_theme="light"
-    " others
+    let g:airline_theme="onedark"
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#hunks#enabled = 1 
     let g:airline#extensions#ale#enabled = 1
@@ -168,9 +159,13 @@ if has('nvim') || v:version >= 800
     let g:ale_fixers = {
     \ 'python': ['autopep8'],
     \}
-    "let g:ale_sign_column_always = 1
-    "let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
     nnoremap <C-m> :ALEFix<CR>
+
+    " set color of number, comments
+    autocmd ColorScheme * highlight LineNr ctermfg=240
+    autocmd ColorScheme * highlight Comment ctermfg=242
+    colorscheme onedark
+
 endif
     
 " use clipboard

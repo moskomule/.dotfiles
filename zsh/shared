@@ -1,24 +1,32 @@
+#!/local/bin/env zsh
+#
 bindkey -e
-setopt nonomatch # no nomatch error for sth like [x]
+# avoid nomatch error when *, []
+setopt nonomatch 
+# enable # comments in interactive mode
 setopt interactivecomments
-autoload -U compinit; compinit
+# cd -[tab] suggests directories
 setopt auto_pushd
 setopt pushd_ignore_dups
-setopt auto_cd
-setopt share_history
+
 setopt extended_glob
-setopt prompt_subst
+#setopt prompt_subst
+
+# completion
+autoload -U compinit; compinit
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 setopt complete_aliases
-disable r # use ctrl+r instead
 
 # history
+setopt share_history
+setopt extended_history 
 export HISTFILE=${HOME}/.histfile
 setopt hist_ignore_all_dups
-export HISTSIZE=10000
+export HISTSIZE=10000 # on memory
 export SAVEHIST=10000
-setopt EXTENDED_HISTORY
+disable r # use ctrl+r instead
+
 
 # PATH
 export PATH="${PATH}:${HOME}/.dotfiles/bin"
@@ -27,13 +35,19 @@ export PATH="${PATH}:${HOME}/.dotfiles/bin"
 autoload -Uz colors # black red green yellow blue magenta cyan white
 colors
 
-# Aliases
+# set aliases or replace commands
 alias ls='ls -GF'
 alias la='ls -la'
 alias lh='ls -lh'
-alias jup='jupyter lab'
 
-alias tmux='direnv exec / tmux'
+if (( $+commands[jupyter] )); then
+    alias jup='jupyter lab'
+fi
+
+if (( $+commands[direnv] )); then
+    # recommended
+    alias tmux='direnv exec / tmux'
+fi
 alias tma='tmux a'
 
 if (( $+commands[nvim] )); then
@@ -86,10 +100,12 @@ if (( $+commands[direnv] )); then
     eval "$(direnv hook zsh)"
 fi
 
+# plugins
 fpath=( /usr/local/share/zsh-completions $fpath )
-fpath=( "${HOME}/.dotfiles/zsh" $fpath )
+#fpath=( "${HOME}/.dotfiles/zsh" $fpath )
 
 fpath+=${HOME}/.dotfiles/zsh/pure
 autoload -U promptinit; promptinit
 prompt pure
 source ${HOME}/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=250'
