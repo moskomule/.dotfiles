@@ -109,3 +109,8 @@ autoload -U promptinit; promptinit
 prompt pure
 source ${HOME}/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=250'
+
+if [[ "$LANG" == "" ]]; then
+    # to avoid pure's problem
+    export LANG=en_US.UTF-8
+fi
