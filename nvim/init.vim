@@ -35,7 +35,6 @@ nnoremap <Space>q :q<CR>
 " quit vim
 nnoremap <C-x> :qa<CR>
 
-
 " escape from searching mode
 nnoremap <silent> <ESC><ESC> :nohlsearch<CR>
 
@@ -56,6 +55,9 @@ if has('nvim') || v:version >= 800
       autocmd!
     augroup END
     
+    " python
+    let g:python3_host_prog = expand('$HOME/.dotfiles/venv/bin/python')
+
     " dein settings
     let s:cache_home = empty($XDG_CACHE_HOME) ? expand('$HOME/.cache') : $XDG_CACHE_HOME
     let s:dein_dir = s:cache_home . '/dein'
@@ -87,24 +89,34 @@ if has('nvim') || v:version >= 800
     
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-    " activate NERDTree
-    map <C-n> :NERDTreeToggle<CR>
     
-    
-    " launch ndtree automatically
-    autocmd StdinReadPre * let s:std_in=1
-    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-    " ignore extensions
-    let NERDTreeIgnore = ['.(tgz|gz|zip)$' ]
-    
-    " EasyAlign
-    " start interactive EasyAlign in visual mode (e.g. vipga)
-    xmap ga <Plug>(EasyAlign)
-    " start interactive EasyAlign for a motion/text object (e.g. gaip)
-    nmap ga <Plug>(EasyAlign)
+    nnoremap <silent><C-n> :Defx -split=vertical -winwidth=50 -direction=topleft<CR>
+    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Defx | endif
+    " automatically redraw
+    autocmd BufWritePost * call defx#redraw()
 
-    " python
-    let g:python3_host_prog = expand('$HOME/.dotfiles/venv/bin/python')
+    autocmd FileType defx call s:defx_settings()
+    function! s:defx_settings() abort
+
+        nnoremap <silent><buffer><expr><CR> defx#is_directory() ? defx#do_action('open_or_close_tree'):  defx#do_action('multi', ['drop', 'quit'])
+        nnoremap <silent><buffer><expr>v defx#do_action('multi', [['drop', 'vsplit'], 'quit'])
+        nnoremap <silent><buffer><expr>s defx#do_action('multi', [['drop', 'split'], 'quit'])
+        nnoremap <silent><buffer><expr>. defx#do_action('toggle_ignored_files')
+        nnoremap <silent><buffer><expr>p defx#do_action('cd', ['..'])
+        nnoremap <silent><buffer><expr><C-n> defx#do_action('quit')
+        nnoremap <silent><buffer><expr>o defx#is_opened_tree() ? defx#do_action('close_tree'): defx#do_action('open_tree_recursive')
+        nnoremap <silent><buffer><expr>yy defx#do_action('yank_path')
+        nnoremap <silent><buffer><expr>S defx#do_action('toggle_sort', 'time')
+    endfunction
+    
+    call defx#custom#option('_', {
+      \ 'winwidth': 30,
+      \ 'split': 'vertical',
+      \ 'direction': 'topleft',
+      \ 'show_ignored_files': 0,
+      \ 'toggle': 1,
+      \ })
+
 
     " deoplete
     let g:deoplete#enable_at_startup = 1
@@ -114,6 +126,9 @@ if has('nvim') || v:version >= 800
     nmap <silent> ,r :<C-u>Denite file/old<CR>
     nmap <silent> ,g :<C-u>Denite grep<CR>
     nmap <silent> ,b :<C-u>Denite buffer<CR>
+    nmap <silent> ,m :<C-u>Denite menu<CR>
+
+    " when denite is active
     autocmd FileType denite call s:denite_settings()
     function! s:denite_settings() abort
         " enter = open in denite
@@ -125,6 +140,7 @@ if has('nvim') || v:version >= 800
         nnoremap <silent><buffer><expr> <Space> denite#do_map('toggle_select').'j'
     endfunction
 
+    " when denite-filter is active
     autocmd FileType denite-filter call s:denite_filter_settings()
     function! s:denite_filter_settings() abort
         nnoremap <silent><buffer><expr> q denite#do_map('quit')
@@ -146,6 +162,20 @@ if has('nvim') || v:version >= 800
         \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_percent)) / 2),
         \ 'prompt': '>> ',
         \ })
+
+    "menu
+    let s:menus = {}
+    let s:menus.dotfiles = {'description': 'Edit .dotfiles'}
+    let s:menus.dotfiles.file_candidates = [
+        \ ['zsh_shared', '~/.dotfiles/zsh/shared'],
+        \ ['.zshrc', '~/.zshrc'],
+        \ ['.vimrc', '~/.vimrc'],
+        \ ['.tmux.conf', '~/.tmux.conf'],
+        \ ['plugins.toml', '~/.dotfiles/dein/plugins.toml'],
+        \ ['plugins_lazy.toml', '~/.dotfiles/dein/plugins_lazy.toml'],
+        \]
+
+    call denite#custom#var('menu', 'menus', s:menus)
 
     " jedi-vim
     autocmd FileType python setlocal completeopt-=preview

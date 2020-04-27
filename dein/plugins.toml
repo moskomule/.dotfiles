@@ -5,16 +5,17 @@ repo = 'Shougo/dein.vim'
 repo = 'Shougo/denite.nvim'
 
 [[plugins]]
-repo = 'tomasr/molokai'
+repo = 'Shougo/deoplete.nvim'
 
 [[plugins]]
-repo = 'Shougo/deoplete.nvim'
+repo ='Shougo/defx.nvim'
+on_cmd = 'Defx'
 
 [[plugins]]
 repo = 'Townk/vim-autoclose'
 
-[[plugins]]
-repo = 'scrooloose/nerdtree'
+#[[plugins]]
+#repo = 'scrooloose/nerdtree'
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
