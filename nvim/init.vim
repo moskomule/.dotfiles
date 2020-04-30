@@ -193,15 +193,6 @@ if has('nvim') || v:version >= 800
     let g:airline#extensions#ale#error_symbol = 'E:'
     let g:airline#extensions#ale#warning_symbol = 'W:'
     
-    "ale
-    let g:ale_linters = {
-    \ 'python': ['autopep8', 'pyre'],
-    \ 'cpp': ['clangd'],
-    \}
-    let g:ale_fixers = {
-    \ 'python': ['autopep8'],
-    \}
-    nnoremap <C-m> :ALEFix<CR>
 
     " set color of number, comments
     autocmd ColorScheme * highlight LineNr ctermfg=240

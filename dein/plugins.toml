@@ -14,9 +14,6 @@ on_cmd = 'Defx'
 [[plugins]]
 repo = 'Townk/vim-autoclose'
 
-#[[plugins]]
-#repo = 'scrooloose/nerdtree'
-
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
 
