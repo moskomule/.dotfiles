@@ -53,7 +53,8 @@ vim_initialize: xdg_config ## initialize vim files
 	@mkdir -p ${XDG_CONFIG_HOME}/nvim
 	@ln -sfv ${DOTFILES_DIR}/nvim/init.vim ${XDG_CONFIG_HOME}/nvim/init.vim
 	@ln -sfv ${DOTFILES_DIR}/dein ${XDG_CONFIG_HOME}/dein
-	@python3 -m venv venv \
+	@cd ${DOTFILES_DIR} \
+		&& python -m venv venv \
 		&& ${DOTFILES_DIR}/venv/bin/pip install -U pip \
 		&& ${DOTFILES_DIR}/venv/bin/pip install -U pynvim
 
@@ -90,9 +91,9 @@ brew_install:
 		/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"; \
 	else \
 	# https://docs.brew.sh/Homebrew-on-Linux#alternative-installation
-		git clone https://github.com/Homebrew/brew ~/.linuxbrew/Homebrew ; \
-		mkdir ~/.linuxbrew/bin; \
-		ln -s ~/.linuxbrew/Homebrew/bin/brew ~/.linuxbrew/bin; \
+		git clone https://github.com/Homebrew/brew ~/.linuxbrew/Homebrew && \
+		mkdir ~/.linuxbrew/bin && \
+		ln -s ~/.linuxbrew/Homebrew/bin/brew ~/.linuxbrew/bin && \
 		eval $(~/.linuxbrew/bin/brew shellenv);
 	fi
 
