@@ -1,0 +1,10 @@
+  build:
+
+    runs-on: [ubuntu-latest, macos-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: run test
+        run: |
+            make test
