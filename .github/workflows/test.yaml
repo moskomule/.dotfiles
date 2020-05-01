@@ -9,12 +9,10 @@ jobs:
             os: [ubuntu-latest, macos-latest]
     steps:
       - uses: actions/checkout@v2
-        with:
-            path: .dotfiles
       - uses: actions/setup-python@v1
         with:
           python-version: '3.7'
       - name: run test
         run: |
-            echo ${PWD}
+            export HOME=${GITHUB_WORKSPACE}
             make test
