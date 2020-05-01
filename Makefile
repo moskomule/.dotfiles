@@ -33,11 +33,11 @@ minimum: zsh_initialize bash_initialize vim_initialize tmux_initialize direnv_in
 	@echo "Finished minimum installation of .dotfiles"
 
 
-all: minimum brew_install brew_bundle conda_install ## Install all, including **brew and conda
+all: brew_install brew_bundle conda_install minimum ## Install all, including **brew and conda
 	@echo "Finished installation of brew and conda"
 
 
-test: all update clean ## minimum installation, update and clean for test purpose
+test: minimum update clean ## minimum installation, update and clean for test purpose
 	@echo "Test Finished!"
 
 zsh_initialize: ## initialize zsh files
