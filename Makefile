@@ -53,7 +53,7 @@ vim_initialize: xdg_config ## initialize vim files
 	@mkdir -p ${XDG_CONFIG_HOME}/nvim
 	@ln -sfv ${DOTFILES_DIR}/nvim/init.vim ${XDG_CONFIG_HOME}/nvim/init.vim
 	@ln -sfv ${DOTFILES_DIR}/dein ${XDG_CONFIG_HOME}/dein
-	@python -m venv venv \
+	@python3 -m venv venv \
 		&& ${DOTFILES_DIR}/venv/bin/pip install -U pip \
 		&& ${DOTFILES_DIR}/venv/bin/pip install -U pynvim
 
