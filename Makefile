@@ -38,6 +38,8 @@ all: brew_install brew_bundle conda_install minimum ## Install all, including **
 
 
 test: minimum update clean ## minimum installation, update and clean for test purpose
+	@echo ${HOME}
+	@echo ${DOTFILES_DIR}
 	@echo "Test Finished!"
 
 zsh_initialize: ## initialize zsh files
@@ -53,8 +55,7 @@ vim_initialize: xdg_config ## initialize vim files
 	@mkdir -p ${XDG_CONFIG_HOME}/nvim
 	@ln -sfv ${DOTFILES_DIR}/nvim/init.vim ${XDG_CONFIG_HOME}/nvim/init.vim
 	@ln -sfv ${DOTFILES_DIR}/dein ${XDG_CONFIG_HOME}/dein
-	@cd ${DOTFILES_DIR} \
-		&& python -m venv venv \
+	@python -m venv venv \
 		&& ${DOTFILES_DIR}/venv/bin/pip install -U pip \
 		&& ${DOTFILES_DIR}/venv/bin/pip install -U pynvim
 

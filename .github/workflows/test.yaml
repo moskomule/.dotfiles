@@ -14,5 +14,5 @@ jobs:
           python-version: '3.7'
       - name: run test
         run: |
-            export HOME=${GITHUB_WORKSPACE}
+            export DOTFILES_DIR=${GITHUB_WORKSPACE}
             make test

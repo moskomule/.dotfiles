@@ -8,10 +8,3 @@ if [[ $@ == "" ]]; then
     make minimum
 fi
 
-if [[ $1 == "test" ]]; then
-    # circle CI environment
-    export DOTFILES_DIR=/home/circleci/project
-    make test
-fi
-
-
