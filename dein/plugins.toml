@@ -31,3 +31,4 @@ repo = 'tpope/vim-surround'
 
 [[plugins]]
 repo = 'joshdick/onedark.vim'
+

@@ -24,25 +24,28 @@ set inccommand=split
 " show status lines everytime
 set laststatus=2
 
+set splitbelow
+set splitright
+
 " enable use mouse in every mode
 set mouse=a
 
-" costum keymapping
+" costum keymappings
 " save
 nnoremap <Space>w :w<CR>
 " quit
 nnoremap <Space>q :q<CR>
 " quit vim
-nnoremap <C-x> :qa<CR>
+nnoremap <Space>x :qa<CR>
 
 " escape from searching mode
 nnoremap <silent> <ESC><ESC> :nohlsearch<CR>
 
-" easier split navigation (omit C-w)
-nnoremap <C-h> <C-w><C-h>
-nnoremap <C-j> <C-w><C-j>
-nnoremap <C-k> <C-w><C-k>
-nnoremap <C-l> <C-w><C-l>
+" buffers
+nnoremap <silent> [b :bprev<CR>
+nnoremap <silent> ]b :bnext<CR>
+
+" windows
 
 
 if has('nvim') || v:version >= 800
@@ -74,6 +77,7 @@ if has('nvim') || v:version >= 800
     
     let s:toml = '$XDG_CONFIG_HOME/dein/plugins.toml'
     let s:lazy_toml = '$XDG_CONFIG_HOME/dein/plugins_lazy.toml'
+    let g:dein#auto_recache = 0
     
     if dein#load_state(s:dein_dir)
         call dein#begin(s:dein_dir, [s:toml])
@@ -127,6 +131,7 @@ if has('nvim') || v:version >= 800
     nmap <silent> ,g :<C-u>Denite grep<CR>
     nmap <silent> ,b :<C-u>Denite buffer<CR>
     nmap <silent> ,m :<C-u>Denite menu<CR>
+    nmap <silent> ,y :<C-u>Denite neoyank<CR>
 
     " when denite is active
     autocmd FileType denite call s:denite_settings()
