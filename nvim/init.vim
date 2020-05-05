@@ -45,7 +45,8 @@ nnoremap <silent> <ESC><ESC> :nohlsearch<CR>
 nnoremap <silent> [b :bprev<CR>
 nnoremap <silent> ]b :bnext<CR>
 
-" windows
+" e.g., :e %%
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 
 if has('nvim') || v:version >= 800
