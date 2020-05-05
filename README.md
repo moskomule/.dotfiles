@@ -18,25 +18,26 @@ cd .dotfiles
 make [all]
 ```
 
-## Homebrew
-
-```
-make brew_bundle
-```
 
 ## NeoVim
 
+`.vimrc` is expected to work with VIM and NeoVim.
+
 ## zsh
 
-Add machine specific settings to `~/.zshrc`.
+Add machine specific settings to `~/.zshrc`, which git doesn't track.
 
 ## tmux
 
-`.tmux.conf` is for tmux 2.1 or later. Settings for mouse had been changed.
+`.tmux.conf` is for tmux 2.1 or later. 
 
 ## Python
 
 `make conda_install` will install miniconda to `$HOME/.miniconda`.
+
+## [Home|Linux]brew
+
+`make brew_install` will install homebrew and `make brew_bundle` will install bundled applications.
 
 ## Update
 
@@ -44,4 +45,6 @@ Add machine specific settings to `~/.zshrc`.
 
 ## Clean
 
-`make clean` will remove installed dotfiles. Note that this command will not brew and conda.
+> A bird does not foul the nest that it is about to leave (Japanese proverb)
+
+`make clean` will remove installed dotfiles. Note that this command will not clean brew and conda.
