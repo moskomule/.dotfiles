@@ -1,0 +1,12 @@
+.idea
+__pycache__
+*.pyc
+results*
+.envrc
+notebooks
+outputs
+abci.py
+ist.py
+raiden.py
+slurmlog
+.vscode

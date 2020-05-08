@@ -9,19 +9,16 @@ define _backup
 	fi
 endef
 
-define _restore
+define _remove_and_restore_backup
+	if [[ -e ${1} ]]; then \
+		rm -rf ${1}; \
+	fi
 
 	if [[ -e ${1}.backup ]]; then \
 		mv ${1}.backup ${1} ; \
 	fi
 endef
 
-define _rm_if_exists
-
-	if [[ -e ${1} ]]; then \
-		rm -rf ${1}; \
-	fi
-endef
 
 # auto help https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 .PHONY: help
@@ -29,7 +26,7 @@ endef
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-minimum: zsh_initialize bash_initialize vim_initialize tmux_initialize direnv_initialize ## Minimum Installation
+minimum: zsh_initialize misc_initialize vim_initialize tmux_initialize ## Minimum Installation
 	@echo "Finished minimum installation of .dotfiles"
 
 
@@ -46,8 +43,6 @@ zsh_initialize: ## initialize zsh files
 	@$(call _backup,${HOME}/.zshrc)
 	@echo "source ${DOTFILES_DIR}/zsh/shared" >> ${HOME}/.zshrc
 
-bash_initialize: ## initialize bash files 
-	@$(call _backup,${HOME}/.bash_profile)
 
 vim_initialize: xdg_config ## initialize vim files
 	@$(call _backup,${HOME}/.vimrc)
@@ -68,17 +63,21 @@ xdg_config: ## set xdg_config path
 tmux_initialize: ## set tmux files
 	@ln -sfv ${DOTFILES_DIR}/.tmux.conf ${HOME}/.tmux.conf
 
-
-direnv_initialize: ## set direnv files
+misc_initialize: ## set direnv, rsync
+	@$(call _backup,${HOME}/.rsync_exclude)
+	@ln -sfv ${DOTFILES_DIR}/misc/.rsync_exclude ${HOME}/.rsync_exclude
+	@$(call _backup,${HOME}/.direnvrc)
 	@ln -sfv ${DOTFILES_DIR}/.direnvrc ${HOME}/.direnvrc
+	@$(call _backup,${HOME}/.bash_profile)
 
 
 clean: ## cleanup
-	@$(call _restore,${HOME}/.zshrc)
-	@$(call _restore,${HOME}/.vimrc)
-	@$(call _restore,${HOME}/.bash_profile)
-	@$(call _rm_if_exists,${HOME}/.tmux.conf)
-	@$(call _rm_if_exists,${HOME}/.direnvrc)
+	@$(call _remove_and_restore_backup,${HOME}/.zshrc)
+	@$(call _remove_and_restore_backup,${HOME}/.vimrc)
+	@$(call _remove_and_restore_backup,${HOME}/.bash_profile)
+	@$(call _remove_and_restore_backup,${HOME}/.tmux.conf)
+	@$(call _remove_and_restore_backup,${HOME}/.direnvrc)
+	@$(call _remove_and_restore_backup,${HOME}/.rsync_exclude)
 	@rm -rf ${XDG_CONFIG_DIR}/nvim ${XDG_CONFIG_DIR}/dein
 	@echo "Cleaned!"
 
