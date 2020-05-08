@@ -83,7 +83,7 @@ if (( $+commands[ghq] )); then
 fi
 
 # filter can be fzf
-FILTER=${FILTER:-peco}
+FILTER=${FILTER:-fzf}
 
 if (( $+commands[${FILTER}] )); then
     alias -g P='| ${FILTER}'
