@@ -56,6 +56,8 @@ fi
 
 if (( $+commands[bat] )); then
     alias cat='bat'
+    # man with highlight
+    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 fi
 
 if (( $+commands[exa] )); then
@@ -106,6 +108,16 @@ if (( $+commands[${FILTER}] )); then
         }
         zle -N filter-src
         bindkey '^g' filter-src
+    fi
+fi
+
+if (( $+commands[fzf] )); then
+    export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
+    if (( $+commands[rg] )); then
+        export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+    fi
+    if (( $+commands[bat] )); then
+        alias fzfp=fzf --preview "bat  --color=always --style=header,grid  {}"
     fi
 fi
 
