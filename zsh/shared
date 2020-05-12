@@ -82,6 +82,7 @@ if (( $+commands[ghq] )); then
         # # refers to the start and % refers to the end
         cd "$(ghq root)/${${URL#*//}%.git}"
     }
+
 fi
 
 # filter can be fzf

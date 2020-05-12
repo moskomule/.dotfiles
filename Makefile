@@ -63,6 +63,10 @@ xdg_config: ## set xdg_config path
 tmux_initialize: ## set tmux files
 	@ln -sfv ${DOTFILES_DIR}/.tmux.conf ${HOME}/.tmux.conf
 
+ipython_initialize: ## set ipython config
+	@mkdir -p ${HOME}/.ipython/profile_default
+	@ln -sfv ${DOTFILES_DIR}/ipython/ipython_config.py ${HOME}/.ipython/profile_default
+
 misc_initialize: ## set direnv, rsync
 	@$(call _backup,${HOME}/.rsync_exclude)
 	@ln -sfv ${DOTFILES_DIR}/misc/.rsync_exclude ${HOME}/.rsync_exclude
