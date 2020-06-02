@@ -88,6 +88,7 @@ clean: ## cleanup
 
 update: ## update dotfiles
 	@git pull && git submodule update --init --recursive --remote
+	@${DOTFILES_DIR}/venv/bin/pip install -U pip pynvim
 
 
 brew_install:

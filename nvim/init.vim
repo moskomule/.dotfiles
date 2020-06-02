@@ -105,7 +105,9 @@ if has('nvim') || v:version >= 800
 
         nnoremap <silent><buffer><expr><CR> defx#is_directory() ? defx#do_action('open_or_close_tree'):  defx#do_action('multi', ['drop', 'quit'])
         nnoremap <silent><buffer><expr>v defx#do_action('multi', [['drop', 'vsplit'], 'quit'])
+        nnoremap <silent><buffer><expr>V defx#do_action('drop', 'vsplit')
         nnoremap <silent><buffer><expr>s defx#do_action('multi', [['drop', 'split'], 'quit'])
+        nnoremap <silent><buffer><expr>S defx#do_action('drop', 'split')
         nnoremap <silent><buffer><expr>. defx#do_action('toggle_ignored_files')
         nnoremap <silent><buffer><expr>p defx#do_action('cd', ['..'])
         nnoremap <silent><buffer><expr><C-n> defx#do_action('quit')
@@ -120,6 +122,7 @@ if has('nvim') || v:version >= 800
       \ 'direction': 'topleft',
       \ 'show_ignored_files': 0,
       \ 'toggle': 1,
+      \ 'resume': 1,
       \ })
 
 
