@@ -137,7 +137,7 @@ prompt pure
 source ${HOME}/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=250'
 
-if [[ ! $(uname | grep -q Darwin) ]]; then
+if [[ ! $(uname) != "Darwin" ]]; then
     # to avoid pure's problem
     if [[ "$LANG" == "" ]]; then
         export LANG=en_US.UTF-8
