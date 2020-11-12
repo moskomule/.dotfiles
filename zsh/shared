@@ -91,7 +91,7 @@ FILTER=${FILTER:-fzf}
 if (( $+commands[${FILTER}] )); then
     alias -g P='| ${FILTER}'
     function filter-select-history() {
-        BUFFER=$(fc -l -r -n 1 | ${FILTER} --query "$LBUFFER")
+        BUFFER=$(fc -l -r -n 1 | ${FILTER} --no-sort --query "$LBUFFER")
         CURSOR=$#BUFFER
         zle redisplay
     }
@@ -113,7 +113,7 @@ if (( $+commands[${FILTER}] )); then
 fi
 
 if (( $+commands[fzf] )); then
-    export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
+    export FZF_DEFAULT_OPTS='--height 40% --border --reverse'
     if (( $+commands[rg] )); then
         export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
     fi

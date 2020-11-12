@@ -44,3 +44,6 @@ hook_source = '''
     let g:deoplete#sources#jedi#show_docstring = 1 
     let g:deoplete#sources#jedi#worker_threads = 2
 '''
+
+[[plugins]]
+repo = 'junegunn/goyo.vim'

@@ -5,8 +5,5 @@ results*
 .envrc
 notebooks
 outputs
-abci.py
-ist.py
-raiden.py
-slurmlog
+slurmlog*
 .vscode

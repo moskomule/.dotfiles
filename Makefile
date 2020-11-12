@@ -95,11 +95,11 @@ brew_install:
 	@if [[ "$$(uname)" == 'Darwin' ]]; then \
 		/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"; \
 	else \
-	# https://docs.brew.sh/Homebrew-on-Linux#alternative-installation
+	# https://docs.brew.sh/Homebrew-on-Linux#alternative-installation \ 
 		git clone https://github.com/Homebrew/brew ~/.linuxbrew/Homebrew && \
 		mkdir ~/.linuxbrew/bin && \
 		ln -s ~/.linuxbrew/Homebrew/bin/brew ~/.linuxbrew/bin && \
-		eval $(~/.linuxbrew/bin/brew shellenv);
+		eval $(~/.linuxbrew/bin/brew shellenv); \
 	fi
 
 
