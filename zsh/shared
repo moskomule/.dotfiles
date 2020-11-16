@@ -91,7 +91,7 @@ FILTER=${FILTER:-fzf}
 if (( $+commands[${FILTER}] )); then
     alias -g P='| ${FILTER}'
     function filter-select-history() {
-        BUFFER=$(fc -l -r -n 1 | ${FILTER} --no-sort --query "$LBUFFER")
+        BUFFER=$(history  -r -n 1 | ${FILTER} --no-sort --query "$LBUFFER")
         CURSOR=$#BUFFER
         zle redisplay
     }
