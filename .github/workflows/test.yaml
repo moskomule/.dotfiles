@@ -15,4 +15,4 @@ jobs:
       - name: run test
         run: |
             export DOTFILES_DIR=${GITHUB_WORKSPACE}
-            make test
+            make minimum
