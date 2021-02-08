@@ -50,7 +50,7 @@ vim_initialize: xdg_config ## initialize vim files
 	@mkdir -p ${XDG_CONFIG_HOME}/nvim
 	@ln -sfv ${DOTFILES_DIR}/nvim/init.vim ${XDG_CONFIG_HOME}/nvim/init.vim
 	@ln -sfv ${DOTFILES_DIR}/dein ${XDG_CONFIG_HOME}/dein
-	@python -m venv venv \
+	@python3 -m venv venv \
 		&& ${DOTFILES_DIR}/venv/bin/pip install -U pip \
 		&& ${DOTFILES_DIR}/venv/bin/pip install -U pynvim
 
@@ -92,15 +92,7 @@ update: ## update dotfiles
 
 
 brew_install:
-	@if [[ "$$(uname)" == 'Darwin' ]]; then \
-		/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"; \
-	else \
-	# https://docs.brew.sh/Homebrew-on-Linux#alternative-installation \ 
-		git clone https://github.com/Homebrew/brew ~/.linuxbrew/Homebrew && \
-		mkdir ~/.linuxbrew/bin && \
-		ln -s ~/.linuxbrew/Homebrew/bin/brew ~/.linuxbrew/bin && \
-		eval $(~/.linuxbrew/bin/brew shellenv); \
-	fi
+	@/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 
 brew_bundle: 
@@ -113,7 +105,7 @@ conda_install:
 	else \
     	URL="https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh"; \
 	fi \
-	&& wget $${URL} -O miniconda.sh \
+	&& curl $${URL} -o miniconda.sh \
 	&& bash miniconda.sh -b -p ${HOME}/.miniconda \
 	&& echo export PATH="${HOME}/.miniconda/bin:$${PATH}" >> $${HOME}/.zshrc \
 	&& echo export PATH="${HOME}/.miniconda/bin:$${PATH}" >> $${HOME}/.bash_profile \
