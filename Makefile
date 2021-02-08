@@ -107,7 +107,7 @@ conda_install:
 	else \
     	URL="https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh"; \
 	fi \
-	&& curl $${URL} -o miniconda.sh \
+	&& curl -L -o miniconda.sh $${URL} \
 	&& bash miniconda.sh -b -p ${HOME}/.miniconda \
 	&& echo export PATH="${HOME}/.miniconda/bin:$${PATH}" >> $${HOME}/.zshrc \
 	&& echo export PATH="${HOME}/.miniconda/bin:$${PATH}" >> $${HOME}/.bash_profile \
