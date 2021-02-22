@@ -131,7 +131,29 @@ fi
 fpath=( /usr/local/share/zsh-completions $fpath )
 #fpath=( "${HOME}/.dotfiles/zsh" $fpath )
 
-autoload -U promptinit; promptinit
-source ${HOME}/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+if (( $+commands[brew] )); then
+    source $(brew --prefix zsh-autosuggestions)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+else
+    source ${HOME}/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+
+if (( $+commands[starship] )); then
+    eval "$(starship init zsh)"
+else
+    fpath+=${HOME}/.dotfiles/zsh/pure
+    autoload -U promptinit; promptinit
+    prompt pure
+    if [[ ! $(uname) != "Darwin" ]]; then
+        if [[ "$LANG" == "" ]]; then
+            export LANG=en_US.UTF-8
+        fi
+        
+        if [[ "$LC_CTYPE" == "" ]]; then
+            export LC_CTYPE=en_US.UTF-8
+        fi
+    fi
+fi
+
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=250'
 
