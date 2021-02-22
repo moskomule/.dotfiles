@@ -52,8 +52,7 @@ vim_initialize: xdg_config ## initialize vim files
 	@ln -sfv ${DOTFILES_DIR}/dein ${XDG_CONFIG_HOME}/dein
 	@if [[ $$(command -v python3) ]]; then \
 		python3 -m venv venv \
-		&& ${DOTFILES_DIR}/venv/bin/pip install -U pip \
-		&& ${DOTFILES_DIR}/venv/bin/pip install -U pynvim; \
+		&& ${DOTFILES_DIR}/venv/bin/pip install -U pip pynvim;\
 	fi
 
 
@@ -112,3 +111,4 @@ conda_install:
 	&& echo export PATH="${HOME}/.miniconda/bin:$${PATH}" >> $${HOME}/.zshrc \
 	&& echo export PATH="${HOME}/.miniconda/bin:$${PATH}" >> $${HOME}/.bash_profile \
 	&& rm miniconda.sh
+	&& ln -sfv ${DOTFILES_DIR}/.condarc ${HOME}/.condarc

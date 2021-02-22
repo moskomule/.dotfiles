@@ -131,19 +131,7 @@ fi
 fpath=( /usr/local/share/zsh-completions $fpath )
 #fpath=( "${HOME}/.dotfiles/zsh" $fpath )
 
-fpath+=${HOME}/.dotfiles/zsh/pure
 autoload -U promptinit; promptinit
-prompt pure
 source ${HOME}/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=250'
 
-if [[ ! $(uname) != "Darwin" ]]; then
-    # to avoid pure's problem
-    if [[ "$LANG" == "" ]]; then
-        export LANG=en_US.UTF-8
-    fi
-    
-    if [[ "$LC_CTYPE" == "" ]]; then
-        export LC_CTYPE=en_US.UTF-8
-    fi
-fi
