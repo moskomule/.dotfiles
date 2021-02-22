@@ -1,9 +1,6 @@
 [submodule ".vim/dein/repos/github.com/Shougo/dein.vim"]
 	path = .vim/dein/repos/github.com/Shougo/dein.vim
 	url = https://github.com/Shougo/dein.vim.git
-[submodule "zsh/zsh-autosuggestions"]
-	path = zsh/zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions
 [submodule "tmux/tpm"]
 	path = tmux/tpm
 	url = https://github.com/tmux-plugins/tpm
