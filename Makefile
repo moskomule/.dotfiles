@@ -110,5 +110,5 @@ conda_install:
 	&& bash miniconda.sh -b -p ${HOME}/.miniconda \
 	&& echo export PATH="${HOME}/.miniconda/bin:$${PATH}" >> $${HOME}/.zshrc \
 	&& echo export PATH="${HOME}/.miniconda/bin:$${PATH}" >> $${HOME}/.bash_profile \
-	&& rm miniconda.sh
+	&& rm miniconda.sh \
 	&& ln -sfv ${DOTFILES_DIR}/.condarc ${HOME}/.condarc
