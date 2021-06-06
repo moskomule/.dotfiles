@@ -13,6 +13,7 @@ on_cmd = 'Defx'
 
 [[plugins]]
 repo = 'Townk/vim-autoclose'
+on_i = 1
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
